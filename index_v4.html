@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#EDD5AB">
+  <meta name="description" content="Antonella Mele &amp; Pasquale Barbato — Wedding Dashboard.">
+  <title>Antonella Mele &amp; Pasquale Barbato — Matrimonio</title>
+
+  <!-- Google Fonts Preconnect & Caricamento Font di Lusso -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Baskervville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Foglio di Stile v4 (Sfondo personalizzato Sfondo.png, senza paper texture e senza fiori) -->
+  <link rel="stylesheet" href="style_v4.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       LAYOUT PRINCIPALE A PAGINA SINGOLA (v4)
+       Fiori angolari rimossi come richiesto: lo sfondo è gestito da Sfondo.png
+       ==================================================================== -->
+  <main class="main-column" role="main">
+
+    <!-- 1. MONOGRAMMA (In cima) -->
+    <div class="wedding-block monogram-block fade-up-item delay-1">
+      <img src="logo.png" alt="Monogramma Antonella &amp; Pasquale" class="wedding-monogram" width="86" height="56">
+    </div>
+
+    <!-- 2. I NOMI DEGLI SPOSI IN ALTO (In Edwardian Script calligrafico, grandezza piena) -->
+    <section class="wedding-block names-block fade-up-item delay-2" aria-label="Gli Sposi">
+      <h1 class="wedding-names names-script">
+        <span class="name-line name-bride">Antonella Mele</span>
+        <span class="name-ampersand">&amp;</span>
+        <span class="name-line name-groom">Pasquale Barbato</span>
+      </h1>
+    </section>
+
+    <!-- 3. CONTO ALLA ROVESCIA (Solo testo, senza capsula/sfondo, senza "mancano", dimensioni estese) -->
+    <div class="wedding-block countdown-block fade-up-item delay-3">
+      <div class="wedding-countdown countdown-horizontal-text" id="weddingCountdown" aria-label="Conto alla rovescia per il nostro matrimonio">
+        <div class="countdown-unit">
+          <span class="countdown-val" id="cdDays">000</span>
+          <span class="countdown-lbl">GIORNI</span>
+        </div>
+        <span class="countdown-sep" aria-hidden="true">&middot;</span>
+        <div class="countdown-unit">
+          <span class="countdown-val" id="cdHours">00</span>
+          <span class="countdown-lbl">ORE</span>
+        </div>
+        <span class="countdown-sep" aria-hidden="true">&middot;</span>
+        <div class="countdown-unit">
+          <span class="countdown-val" id="cdMinutes">00</span>
+          <span class="countdown-lbl"><span class="lbl-full">MINUTI</span><span class="lbl-short">MIN</span></span>
+        </div>
+        <span class="countdown-sep" aria-hidden="true">&middot;</span>
+        <div class="countdown-unit">
+          <span class="countdown-val" id="cdSeconds">00</span>
+          <span class="countdown-lbl"><span class="lbl-full">SECONDI</span><span class="lbl-short">SEC</span></span>
+        </div>
+      </div>
+
+      <p class="countdown-tagline countdown-outro">al grande giorno</p>
+    </div>
+
+    <!-- 4. NAVIGAZIONE: 4 BOTTONI A GRIGLIA 2x2 + 5° BOTTONE RSVP ORIZZONTALE -->
+    <nav class="wedding-block nav-block fade-up-item delay-4" aria-label="Sezioni informative e conferma">
+      
+      <!-- Griglia 2x2 dei 4 Bottoni Informativi (Outline Fine Art) -->
+      <div class="grid-2x2">
+        <!-- Bottone 1: L'Evento -->
+        <button type="button" class="dash-btn btn-outline" data-modal-target="modal-evento" id="btnEvento" aria-haspopup="dialog" aria-expanded="false">
+          <span class="btn-text">L'Evento</span>
+        </button>
+
+        <!-- Bottone 2: Il Luogo -->
+        <button type="button" class="dash-btn btn-outline" data-modal-target="modal-luogo" id="btnLuogo" aria-haspopup="dialog" aria-expanded="false">
+          <span class="btn-text">Il Luogo</span>
+        </button>
+
+        <!-- Bottone 3: Logistica -->
+        <button type="button" class="dash-btn btn-outline" data-modal-target="modal-logistica" id="btnLogistica" aria-haspopup="dialog" aria-expanded="false">
+          <span class="btn-text">Logistica</span>
+        </button>
+
+        <!-- Bottone 4: Valle d'Itria -->
+        <button type="button" class="dash-btn btn-outline" data-modal-target="modal-valle-itria" id="btnValleItria" aria-haspopup="dialog" aria-expanded="false">
+          <span class="btn-text">Valle d'Itria</span>
+        </button>
+      </div>
+
+      <!-- 5° Bottone Orizzontale R.S.V.P. (Layout Orizzontale a Piena Larghezza, Pieno Bordeaux) -->
+      <div class="rsvp-horizontal-wrapper">
+        <button type="button" class="dash-btn btn-primary btn-rsvp-wide" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
+          <span class="btn-text">R.S.V.P. &mdash; CONFERMA PRESENZA</span>
+        </button>
+      </div>
+
+    </nav>
+
+  </main>
+
+  <!-- ====================================================================
+       SISTEMA MODALI / BOTTOM SHEET INTERATTIVE PER GLI OSPITI
+       ==================================================================== -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-sheet" id="modalSheet" tabindex="-1">
+      <div class="modal-grabber" aria-hidden="true"></div>
+      <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Chiudi la scheda">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Template 1: L'Evento -->
+  <template id="tmpl-modal-evento">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker">Il Programma</p>
+        <h2 class="sheet-title">L'Evento</h2>
+        <p class="sheet-subtitle">Domenica 22 Agosto 2027 &middot; Ore 16:30</p>
+      </header>
+      <div class="sheet-timeline">
+        <div class="timeline-step">
+          <div class="time-badge">16:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title">Accoglienza &amp; Benvenuto</h3>
+            <p class="step-text">Benvenuto tra i giardini della Masseria con infusi freschi e rinfresco estivo pugliese.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">17:00</div>
+          <div class="timeline-desc">
+            <h3 class="step-title">La Cerimonia</h3>
+            <p class="step-text">Rito immerso tra querce secolari e profumo di terra pugliese.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">18:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title">Aperitivo al Tramonto &amp; Cena</h3>
+            <p class="step-text">I sapori tipici della Valle d'Itria, show cooking dal vivo e banchetto conviviale sotto il cielo stellato.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">23:00</div>
+          <div class="timeline-desc">
+            <h3 class="step-title">Taglio della Torta &amp; Festa</h3>
+            <p class="step-text">Open bar, dolci tradizionali e musica fino a tarda notte.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-actions">
+        <button type="button" class="action-btn action-btn-primary" id="btnAddToCalendar">
+          <span class="btn-icon">&#128197;</span> Aggiungi al Calendario
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 2: Il Luogo -->
+  <template id="tmpl-modal-luogo">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker">La Location</p>
+        <h2 class="sheet-title">Il Luogo</h2>
+        <p class="sheet-subtitle">Noci &mdash; Valle d'Itria, Puglia</p>
+      </header>
+      <div class="sheet-body-text">
+        <p class="lead-paragraph">
+          Immersa nel paesaggio suggestivo della Valle d'Itria, tra muretti a secco, querce monumentali e trulli storici, 
+          abbiamo scelto una cornice autentica e riservata per celebrare il nostro amore insieme a voi.
+        </p>
+        <div class="venue-card">
+          <div class="venue-info">
+            <span class="venue-name">Masseria Bonelli</span>
+            <span class="venue-address">Strada Vicinale Bonelli, 70015 Noci (BA)</span>
+          </div>
+        </div>
+        <p class="venue-notes">
+          Ampio parcheggio interno riservato agli ospiti per tutta la durata dell'evento.
+        </p>
+      </div>
+      <div class="sheet-actions">
+        <a href="https://maps.google.com/?q=Noci+Puglia" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-primary">
+          <span class="btn-icon">&#128506;</span> Apri in Google Maps
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 3: Logistica -->
+  <template id="tmpl-modal-logistica">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker">Info Utili</p>
+        <h2 class="sheet-title">Logistica</h2>
+        <p class="sheet-subtitle">Come arrivare, trasporti e soggiorni</p>
+      </header>
+      <div class="logistics-accordion">
+        <article class="logistics-card">
+          <h3 class="logistics-title">&#9992;&#65039; Aeroporti e Treni</h3>
+          <p class="logistics-text">
+            <strong>Aeroporto di Bari Karol Wojty&#322;a (BRI)</strong> &mdash; ca. 60 km (~50 min)<br>
+            <strong>Aeroporto di Brindisi Papola Casale (BDS)</strong> &mdash; ca. 80 km (~65 min)<br>
+            Stazioni ferroviarie consigliate: Bari Centrale, Gioia del Colle, Taranto.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title">&#128663; Servizio Navetta</h3>
+          <p class="logistics-text">
+            Per gli ospiti che alloggeranno nei pressi di Noci e Alberobello sar&agrave; disponibile una navetta dedicata. 
+            Vi preghiamo di indicare la necessit&agrave; di trasferimento nel modulo RSVP.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title">&#128087; Dress Code</h3>
+          <p class="logistics-text">
+            <strong>Summer Black Tie / Cocktail Elegante</strong>.<br>
+            I toni consigliati: sabbia, champagne, terracotta, denim e tessuti estivi naturali (lino, seta). 
+            La pavimentazione comprende corte storica e prati: consigliate calzature comode o tacco largo.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title">&#127976; Dove Alloggiare</h3>
+          <p class="logistics-text">
+            Consigliamo relais, masserie e b&amp;b nel centro storico di <strong>Noci</strong>, <strong>Alberobello</strong>, <strong>Locorotondo</strong> e <strong>Martina Franca</strong>.
+          </p>
+        </article>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 4: Valle d'Itria -->
+  <template id="tmpl-modal-valle-itria">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker">Guida &amp; Ispirazioni</p>
+        <h2 class="sheet-title">Valle d'Itria</h2>
+        <p class="sheet-subtitle">I borghi più belli e cosa visitare</p>
+      </header>
+      <div class="sheet-body-text">
+        <p class="lead-paragraph">
+          Terra di trulli, ulivi monumentali e borghi imbiancati a calce: la Valle d'Itria &egrave; un angolo di Puglia autentico e senza tempo. Ecco le mete imperdibili che vi consigliamo con il cuore:
+        </p>
+        <div class="places-grid">
+          <article class="place-card">
+            <h3 class="place-name">&#127969; Noci</h3>
+            <p class="place-desc">Citt&agrave; dell'enogastronomia e delle &ldquo;gnostre&rdquo; (piccoli cortili storici). Da non perdere una passeggiata tra le viuzze lastricate e le degustazioni di latticini e vini locali.</p>
+          </article>
+          <article class="place-card">
+            <h3 class="place-name">&#127774; Alberobello</h3>
+            <p class="place-desc">Patrimonio Mondiale UNESCO, celebre in tutto il mondo per il suggestivo rione Monti e il rione Aia Piccola con oltre 1.500 trulli intatti.</p>
+          </article>
+          <article class="place-card">
+            <h3 class="place-name">&#128142; Locorotondo</h3>
+            <p class="place-desc">Tra i borghi pi&ugrave; belli d'Italia: una terrazza circolare affacciata sui vigneti, con le tipiche case bianche dai tetti a &ldquo;cummerse&rdquo; e balconi fioriti.</p>
+          </article>
+          <article class="place-card">
+            <h3 class="place-name">&#127963;&#65039; Martina Franca</h3>
+            <p class="place-desc">Cuore barocco della Valle d'Itria, con splendidi palazzi nobiliari, piazza Plebiscito, la Basilica di San Martino e il celebre capocollo artigianale.</p>
+          </article>
+          <article class="place-card">
+            <h3 class="place-name">&#127968; Ostuni</h3>
+            <p class="place-desc">La &ldquo;Citt&agrave; Bianca&rdquo; arroccata su tre colli che domina la piana degli ulivi fino al mare Adriatico, magica al tramonto.</p>
+          </article>
+          <article class="place-card">
+            <h3 class="place-name">&#127754; Polignano a Mare &amp; Monopoli</h3>
+            <p class="place-desc">A soli 30 minuti d'auto: scogliere mozzafiato sul mare cristallino, calette nascoste e l'incanto del porto antico.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 5: R.S.V.P. -->
+  <template id="tmpl-modal-rsvp">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker">Conferma di Partecipazione</p>
+        <h2 class="sheet-title">R.S.V.P.</h2>
+        <p class="sheet-subtitle">Si prega di confermare cortesemente entro il 20 Giugno 2027</p>
+      </header>
+
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <div class="form-field">
+          <label for="rsvpName" class="form-label">Nome e Cognome *</label>
+          <input type="text" id="rsvpName" name="rsvpName" class="form-input" placeholder="Es. Marco Rossi" required>
+        </div>
+
+        <div class="form-field">
+          <span class="form-label">Conferma Presenza *</span>
+          <div class="radio-pill-group">
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="yes" checked>
+              <span class="radio-pill-btn">S&igrave;, ci sar&ograve; con gioia</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="no">
+              <span class="radio-pill-btn">Purtroppo non potr&ograve;</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpGuests" class="form-label">Numero di Ospiti (incluso te)</label>
+          <select id="rsvpGuests" name="rsvpGuests" class="form-select">
+            <option value="1">1 Ospite</option>
+            <option value="2">2 Ospiti</option>
+            <option value="3">3 Ospiti</option>
+            <option value="4">4 Ospiti</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpDietary" class="form-label">Esigenze o Intolleranze Alimentari</label>
+          <input type="text" id="rsvpDietary" name="rsvpDietary" class="form-input" placeholder="Es. Nessuna, celiachia, vegetariano, allergie...">
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpMessage" class="form-label">Un Pensiero o una Canzone per Noi</label>
+          <textarea id="rsvpMessage" name="rsvpMessage" class="form-textarea" rows="2" placeholder="Scrivici una dedica o un brano che vorresti ascoltare..."></textarea>
+        </div>
+
+        <button type="submit" class="action-btn action-btn-submit" id="btnSubmitRsvp">
+          Invia la Conferma
+        </button>
+      </form>
+
+      <div class="rsvp-feedback-success" id="rsvpSuccessBox" style="display: none;">
+        <span class="success-icon">&#10084;</span>
+        <h3 class="success-title">Grazie di Cuore!</h3>
+        <p class="success-text" id="rsvpSuccessText">La tua risposta &egrave; stata registrata con successo. Non vediamo l'ora di festeggiare insieme!</p>
+        <button type="button" class="action-btn action-btn-secondary" id="btnEditRsvp" style="margin-top: 14px;">
+          Modifica Risposta
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Script Funzionale -->
+  <script src="script.js"></script>
+</body>
+</html>

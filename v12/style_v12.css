@@ -1,0 +1,1720 @@
+/**
+ * ============================================================================
+ * Matrimonio Antonella & Pasquale — Foglio di Stile v11
+ * Caratteristiche Versione 11:
+ * 1. Hero Section Pulita per Massima Visibilità del Dipinto:
+ *    - In basso a sinistra: Mappamondo cambio lingua (Italiano / English)
+ *    - In basso a destra: Invito a scrollare ("Scorri per scoprire")
+ *    - Centro completamente libero per ammirare i gattini e il paesaggio
+ * 2. Conto alla Rovescia Spostato nella Seconda Schermata:
+ *    - Nuova tagline romantica: "until forever begins" (EN) /
+ *      "fino all'inizio del nostro per sempre" (IT)
+ *    - Capsula orizzontale in vetro caldo Oat in cima alla Action Section
+ * 3. Due Blocchi Luxury Preservati:
+ *    - Blocco 1: Citazione con cornice di lusso, filigrane d'angolo e ulivo pugliese
+ *    - Blocco 2: Bottone R.S.V.P. Bordeaux e Griglia 2x2 Bottoni Informativi Oat
+ * ============================================================================
+ */
+
+/* --------------------------------------------------------------------------
+   1. REGISTRAZIONE FONT CALLIGRAFICI LOCALI (Edwardian Script ITC)
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Edwardian Script ITC Local';
+  src: url('EdwardianScriptITC.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2. VARIABILI DI DESIGN & TAVOLOZZA COLORI
+   -------------------------------------------------------------------------- */
+:root {
+  /* Tavolozza Matrimonio Fine Art */
+  --bg-oat: #EDD5AB;                 /* Avena caldo */
+  --bg-btn-oat: rgba(237, 213, 171, 0.92); /* Sfondo materico Oat per bottoni griglia */
+  --color-bordeaux: #601D2D;         /* Bordeaux Nobile Principale */
+  --color-bordeaux-dark: #461420;    /* Bordeaux Scuro per hover */
+  --color-bordeaux-hover: #732336;   /* Bordeaux Chiaro per hover */
+  --color-gold: #B55838;             /* Terracotta / Rame */
+  --color-denim: #97B2D1;            /* Denim / Carta da Zucchero */
+  --color-cream: #FAF5EA;            /* Crema chiaro */
+  --color-white: #FFFFFF;
+
+  /* Tipografia */
+  --font-script: "Edwardian Script ITC Local", "Edwardian Script ITC", "Edwardian Script", "MonteCarlo", "Great Vibes", "Pinyon Script", "Alex Brush", cursive;
+  --font-quote: "Libre Baskerville", "Baskervville", Georgia, serif;
+  --font-serif: "Baskervville", "Libre Baskerville", "Baskerville", "Baskerville Old Face", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Transizioni Morbide */
+  --ease-out-fluid: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-hover: 0.28s;
+}
+
+/* --------------------------------------------------------------------------
+   3. RESET & BASE (BACKGROUND PARALLAX FISSO: sfondo-gatte.jpeg)
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-oat);
+  color: var(--color-bordeaux);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-oat);
+  background-image: url('sfondo-gatte.jpeg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  font-family: var(--font-serif);
+  color: var(--color-bordeaux);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Overlay di sfondo fisso a tutto schermo per iOS / Mobile browsers */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background-image: url('sfondo-gatte.jpeg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Su schermi panoramici / desktop, bilancia l'inquadratura tra cielo e masseria */
+@media (min-aspect-ratio: 1.1/1) {
+  body, body::before {
+    background-position: center 20%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. HERO SECTION (PRIMA SCHERMATA: 100vh)
+   - In alto: Monogramma e Nomi nel Cielo (scala generosa v6)
+   - Al centro: Vista panoramica del dipinto aperta e sgombra
+   - In basso: Conto alla rovescia in capsula frosted sopra al blob "Scorri per scoprire"
+   -------------------------------------------------------------------------- */
+.hero-section {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: clamp(1.2rem, 3.5vh, 2.5rem);
+  padding-bottom: clamp(1.2rem, 3vh, 2.2rem);
+  padding-left: clamp(14px, 4vw, 22px);
+  padding-right: clamp(14px, 4vw, 22px);
+  position: relative;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+/* Top: Nomi e Monogramma nel Cielo */
+.hero-top-sky {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Blocchi Base */
+.wedding-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Monogramma */
+.monogram-block {
+  margin-top: 0.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.wedding-monogram {
+  width: clamp(68px, 17vw, 88px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 2px 10px rgba(255, 255, 255, 0.75)) drop-shadow(0 2px 6px rgba(96, 29, 45, 0.2));
+  transition: transform 0.35s var(--ease-out-fluid);
+}
+
+.wedding-monogram:hover {
+  transform: scale(1.05);
+}
+
+/* Nomi degli Sposi in Edwardian Script (uguale a v6) */
+.names-block {
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.wedding-names.names-script {
+  font-family: var(--font-script);
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 0.98;
+  margin: 0;
+  padding: 0 6px;
+}
+
+.name-line {
+  font-size: clamp(3.2rem, 11.5vw, 5.2rem);
+  font-weight: 400;
+  color: var(--color-bordeaux);
+  letter-spacing: 0.01em;
+  display: block;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85),
+               0 2px 14px rgba(255, 255, 255, 0.75),
+               0 1px 3px rgba(96, 29, 45, 0.15);
+}
+
+.name-ampersand {
+  font-size: clamp(2.1rem, 7vw, 3.2rem);
+  font-family: var(--font-script);
+  font-style: italic;
+  color: var(--color-bordeaux);
+  opacity: 0.92;
+  display: block;
+  line-height: 0.88;
+  margin: -0.06em 0;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85),
+               0 2px 10px rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   5. BARRA INFERIORE HERO: Lingua in Basso a Sinistra | Scorri in Basso a Destra
+   -------------------------------------------------------------------------- */
+.hero-bottom-bar {
+  position: absolute;
+  bottom: clamp(18px, 3.6vh, 32px);
+  left: 0;
+  width: 100%;
+  padding: 0 clamp(16px, 4vw, 32px);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.hero-bottom-bar > * {
+  pointer-events: auto;
+}
+
+/* --------------------------------------------------------------------------
+   MAPPAMONDO LINGUA (IN BASSO A SINISTRA - FROSTED GLASS OAT)
+   -------------------------------------------------------------------------- */
+.lang-switcher {
+  position: relative;
+  display: inline-flex;
+}
+
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px 16px;
+  min-height: 40px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.78);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(247, 236, 216, 0.78) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+  cursor: pointer;
+  color: var(--color-bordeaux);
+  transition: transform 0.28s var(--ease-out-fluid), background 0.28s ease, box-shadow 0.28s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+}
+
+.lang-toggle-btn:focus-visible {
+  outline: 2px solid var(--color-bordeaux);
+  outline-offset: 3px;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(96, 29, 45, 0.20);
+}
+
+.lang-toggle-btn:active {
+  transform: translateY(0);
+}
+
+.globe-svg {
+  display: block;
+  flex-shrink: 0;
+  transition: transform 0.35s ease;
+}
+
+.lang-toggle-btn:hover .globe-svg {
+  transform: rotate(25deg);
+}
+
+.lang-current-code {
+  font-family: var(--font-serif);
+  font-size: clamp(0.85rem, 2.2vw, 0.94rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-bordeaux);
+  line-height: 1;
+}
+
+/* Menu Dropdown / Popover Lingua: posizionato sopra (si apre verso l'alto a sinistra) */
+.lang-menu {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  right: auto;
+  min-width: 145px;
+  background: rgba(255, 255, 255, 0.94);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 236, 216, 0.90) 100%);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 6px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16),
+              0 3px 10px rgba(96, 29, 45, 0.10);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.96);
+  transform-origin: bottom left;
+  transition: opacity 0.22s var(--ease-out-fluid),
+              transform 0.22s var(--ease-out-fluid),
+              visibility 0.22s;
+  z-index: 65;
+}
+
+.lang-switcher.is-open .lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--color-bordeaux);
+  transition: background 0.18s ease, color 0.18s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lang-option:hover {
+  background: rgba(96, 29, 45, 0.08);
+}
+
+.lang-option.is-active {
+  background-color: var(--color-bordeaux);
+  color: #EDD5AB;
+  font-weight: 600;
+}
+
+.lang-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.lang-label {
+  flex: 1;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.lang-check {
+  font-size: 0.88rem;
+  font-weight: bold;
+  opacity: 0;
+  color: inherit;
+}
+
+.lang-option.is-active .lang-check {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   INVITO A SCROLLARE (IN BASSO A DESTRA - FROSTED GLASS OAT)
+   -------------------------------------------------------------------------- */
+.scroll-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--color-bordeaux);
+  padding: 8px 20px;
+  min-height: 40px;
+  box-sizing: border-box;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.78);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90) 0%, rgba(247, 236, 216, 0.78) 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.90);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.10);
+  transition: transform 0.28s var(--ease-out-fluid), background 0.28s ease, box-shadow 0.28s ease;
+  margin-left: auto;
+}
+
+.scroll-indicator:hover {
+  background: rgba(255, 255, 255, 0.96);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(96, 29, 45, 0.20);
+}
+
+.scroll-text {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(0.88rem, 2.3vw, 1.02rem);
+  letter-spacing: 0.04em;
+  color: var(--color-bordeaux);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+@keyframes gentleBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+.scroll-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: gentleBounce 2s ease-in-out infinite;
+}
+
+.scroll-chevron svg {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   6. ACTION SECTION (SECONDA SCHERMATA: CONTO ALLA ROVESCIA + 2 BLOCCHI)
+   -------------------------------------------------------------------------- */
+.action-section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(50px, 8vh, 85px) clamp(16px, 4vw, 24px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 6;
+}
+
+.action-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vh, 22px);
+}
+
+/* CAPSULA CONTO ALLA ROVESCIA NELLA SECONDA SCHERMATA (ACTION SECTION) */
+.countdown-action-capsule {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 2.4vh, 18px) clamp(16px, 3.5vw, 24px);
+  background: rgba(237, 213, 171, 0.50);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10),
+              inset 0 1px 2px rgba(255, 255, 255, 0.70);
+  box-sizing: border-box;
+}
+
+.wedding-countdown.countdown-horizontal-text {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(4px, 1.2vw, 8px);
+  width: 100%;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+.countdown-unit {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.countdown-val {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.4vw, 1.45rem);
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85);
+}
+
+.countdown-lbl {
+  font-family: var(--font-serif);
+  font-size: clamp(0.70rem, 1.9vw, 0.82rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(96, 29, 45, 0.85);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.lbl-short {
+  display: none;
+}
+
+.lbl-full {
+  display: inline;
+}
+
+@media (max-width: 380px) {
+  .lbl-full {
+    display: none;
+  }
+  .lbl-short {
+    display: inline;
+  }
+  .luxury-quote-frame {
+    padding: 1.25rem 0.85rem;
+  }
+  .corner-filigree {
+    width: 22px;
+    height: 22px;
+  }
+  .corner-tl { top: 4px; left: 4px; }
+  .corner-tr { top: 4px; right: 4px; }
+  .corner-bl { bottom: 4px; left: 4px; }
+  .corner-br { bottom: 4px; right: 4px; }
+}
+
+.countdown-sep {
+  color: rgba(96, 29, 45, 0.5);
+  font-size: 1.15rem;
+  line-height: 1;
+  font-weight: 700;
+  margin: 0 clamp(2px, 0.8vw, 5px);
+}
+
+.countdown-tagline {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(0.96rem, 2.5vw, 1.12rem);
+  font-weight: 400;
+  color: var(--color-bordeaux);
+  letter-spacing: 0.03em;
+  opacity: 0.95;
+  text-align: center;
+  margin-top: 5px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* --------------------------------------------------------------------------
+   6. ACTION SECTION (SECONDA SCHERMATA: DUE BLOCCHI GLASS SEPARATI)
+   - Blocco 1: I 4 bottoni e il bottone RSVP
+   - Blocco 2: La citazione d'amore tra linee Fine Art
+   Entrambi con base cromatica calda Oat: background: rgba(237, 213, 171, 0.45)
+   -------------------------------------------------------------------------- */
+.action-section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(50px, 8vh, 85px) clamp(16px, 4vw, 24px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 6;
+}
+
+.action-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.5vh, 24px); /* Stacco visivo netto tra i due blocchi */
+}
+
+/* Stile Base Condiviso per entrambi i Blocchi Glass (Vetro Caldo Oat) */
+.glass-panel {
+  width: 100%;
+  background: rgba(237, 213, 171, 0.45); /* Base Oat calda per eliminare il tono scuro del prato */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 26px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.13),
+              inset 0 1px 2px rgba(255, 255, 255, 0.6);
+  box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   7. PRIMO BLOCCO (IN ALTO): LA CITAZIONE D'AMORE CON CORNICE DI LUSSO & FREGI
+   - Passe-partout con doppia linea dorata/bordeaux
+   - 4 Angoli con filigrana ornamentale SVG
+   - Fregi botanici con foglie d'ulivo pugliesi e diamante centrale
+   -------------------------------------------------------------------------- */
+.glass-card-quote {
+  padding: 10px; /* Bordo esterno passe-partout per far respirare la cornice interna */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+}
+
+.luxury-quote-frame {
+  width: 100%;
+  border: 1px solid rgba(96, 29, 45, 0.32); /* Filetto bordeaux fine-art */
+  border-radius: 20px;
+  padding: clamp(1.4rem, 3.2vh, 1.9rem) clamp(1.1rem, 3.2vw, 1.8rem);
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), /* Secondo filetto interno luminoso */
+              0 2px 10px rgba(96, 29, 45, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 4 Angoli Ornamentali SVG Fine-Art Filigree */
+.corner-filigree {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.88;
+  transition: opacity 0.3s ease;
+}
+
+.corner-tl {
+  top: 6px;
+  left: 6px;
+}
+
+.corner-tr {
+  top: 6px;
+  right: 6px;
+  transform: scaleX(-1);
+}
+
+.corner-bl {
+  bottom: 6px;
+  left: 6px;
+  transform: scaleY(-1);
+}
+
+.corner-br {
+  bottom: 6px;
+  right: 6px;
+  transform: scale(-1, -1);
+}
+
+/* Fregi Botanici Superiore e Inferiore */
+.luxury-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.ornament-top {
+  margin-bottom: 0.95rem;
+}
+
+.ornament-bottom {
+  margin-top: 0.95rem;
+}
+
+.botanical-svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Citazione d'Amore in Libre Baskerville corsivo */
+.quote-block {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: clamp(1.04rem, 3vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.62;
+  letter-spacing: 0.025em;
+  color: var(--color-bordeaux);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  padding: 0 8px;
+  margin: 0 auto;
+  text-align: center;
+  max-width: 440px;
+  position: relative;
+  z-index: 2;
+}
+
+.quote-verse {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.quote-verse:last-child {
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. SECONDO BLOCCO (IN BASSO): NAVIGAZIONE SECONDARIA E BOTTONE R.S.V.P.
+   -------------------------------------------------------------------------- */
+.glass-card-nav {
+  padding: clamp(1.4rem, 3.2vh, 1.8rem) clamp(1.2rem, 3.5vw, 1.6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(13px, 2.4vw, 16px);
+}
+
+.rsvp-horizontal-wrapper {
+  width: 100%;
+}
+
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px; /* Spaziatura generosa per respiro tra i bottoni */
+  width: 100%;
+}
+
+/* Base Bottoni Dashboard */
+.dash-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  font-family: var(--font-serif);
+  font-size: clamp(0.96rem, 2.7vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: all var(--duration-hover) var(--ease-out-fluid);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-btn:focus-visible {
+  outline: 2px solid var(--color-bordeaux);
+  outline-offset: 3px;
+}
+
+/* Bottone R.S.V.P. Solido Bordeaux */
+.btn-primary.btn-rsvp-wide {
+  background-color: var(--color-bordeaux);
+  color: var(--bg-oat);
+  border: 1px solid var(--color-bordeaux-dark);
+  border-radius: 16px;
+  min-height: 56px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12),
+              0 6px 20px rgba(96, 29, 45, 0.35),
+              inset 0 0 0 1px rgba(237, 213, 171, 0.25);
+}
+
+.btn-primary.btn-rsvp-wide:hover {
+  background-color: var(--color-bordeaux-hover);
+  color: #FFF2D6;
+  box-shadow: 0 6px 24px rgba(96, 29, 45, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-primary.btn-rsvp-wide:active {
+  background-color: var(--color-bordeaux-dark);
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(96, 29, 45, 0.3);
+}
+
+/* I 4 Bottoni della Griglia in color Oat (#EDD5AB) */
+.btn-oat-card {
+  background: var(--bg-btn-oat);
+  border: 1px solid rgba(96, 29, 45, 0.22);
+  border-radius: 16px;
+  color: var(--color-bordeaux);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-oat-card:hover {
+  background: rgba(247, 231, 205, 0.98);
+  border-color: var(--color-bordeaux);
+  box-shadow: 0 6px 14px rgba(96, 29, 45, 0.16);
+  transform: translateY(-2px);
+}
+
+.btn-oat-card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   10. ANIMAZIONI DI INGRESSO (Staggered Fade-Up)
+   -------------------------------------------------------------------------- */
+@keyframes luxuryFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up-item {
+  opacity: 0;
+  animation: luxuryFadeUp 0.85s var(--ease-out-fluid) forwards;
+}
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.22s; }
+.delay-3 { animation-delay: 0.45s; }
+
+/* --------------------------------------------------------------------------
+   11. SISTEMA MODALI / BOTTOM SHEET INTERATTIVE PER GLI OSPITI
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 8, 14, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-out-fluid), visibility 0.35s;
+}
+
+.modal-backdrop.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 540px;
+  max-height: 88vh;
+  background-color: #FCF9F2;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 18px 24px 34px 24px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.28);
+  position: relative;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.modal-backdrop.is-active .modal-sheet {
+  transform: translateY(0);
+}
+
+.modal-grabber {
+  width: 44px;
+  height: 4px;
+  background-color: rgba(96, 29, 45, 0.25);
+  border-radius: 2px;
+  margin: 0 auto 16px auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-bordeaux);
+  font-size: 1.5rem;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: rgba(96, 29, 45, 0.08);
+  transform: scale(1.1);
+}
+
+/* Contenuto Modale */
+.sheet-content {
+  color: var(--color-bordeaux);
+}
+
+.sheet-header {
+  text-align: center;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(96, 29, 45, 0.15);
+}
+
+.sheet-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sheet-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  line-height: 1.15;
+}
+
+.sheet-subtitle {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+
+/* Timeline Programma */
+.sheet-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.timeline-step {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.time-badge {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-bordeaux);
+  background-color: #EDD5AB;
+  padding: 6px 10px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  min-width: 58px;
+  text-align: center;
+}
+
+.timeline-desc {
+  flex: 1;
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.step-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.88;
+}
+
+.lead-paragraph {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  opacity: 0.92;
+}
+
+.venue-card {
+  background: #EDD5AB;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+
+.venue-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-bordeaux);
+  margin-bottom: 4px;
+}
+
+.venue-address {
+  display: block;
+  font-size: 0.88rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+.venue-notes {
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* Logistica */
+.logistics-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.logistics-card {
+  background: rgba(237, 213, 171, 0.45);
+  border: 1px solid rgba(96, 29, 45, 0.12);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.logistics-title {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.logistics-text {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  opacity: 0.88;
+}
+
+/* Valle d'Itria Grid */
+.places-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.place-card {
+  background: rgba(237, 213, 171, 0.45);
+  border: 1px solid rgba(96, 29, 45, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.place-name {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.place-desc {
+  font-size: 0.84rem;
+  line-height: 1.4;
+  opacity: 0.88;
+}
+
+/* Stili Mappa Interattiva Leaflet & Card Stile Padlet / Google Maps */
+.map-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  width: 100%;
+}
+
+#pugliaMap {
+  background-color: #FAF5EA;
+  box-shadow: 0 4px 18px rgba(96, 29, 45, 0.16);
+  border: 1.5px solid rgba(96, 29, 45, 0.22);
+  overflow: hidden;
+}
+
+/* Filtro CSS elegante: trasforma la cartografia in tonalità calde, pastello e coordinate con il wedding */
+#pugliaMap .leaflet-tile-pane {
+  filter: saturate(0.85) brightness(1.02) contrast(0.96);
+}
+
+/* Stile discreto ed elegante per la nota in basso a destra */
+.leaflet-control-attribution {
+  background: rgba(250, 245, 234, 0.72) !important;
+  color: #7A6A60 !important;
+  font-size: 10px !important;
+  border-top-left-radius: 6px !important;
+  backdrop-filter: blur(4px);
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-bordeaux) !important;
+  text-decoration: none !important;
+}
+
+/* Marker Cuoricino Speciale per Masseria Bonelli */
+.wedding-heart-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.heart-pin-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 10px rgba(96, 29, 45, 0.45));
+}
+
+.heart-pin-glow {
+  position: absolute;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(96, 29, 45, 0.5);
+  animation: heartPulseGlow 2s infinite ease-out;
+  pointer-events: none;
+}
+
+.heart-pin-badge {
+  width: 38px;
+  height: 38px;
+  background: #601D2D;
+  border: 2px solid #EDD5AB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.heart-pin-wrapper:hover .heart-pin-badge {
+  transform: scale(1.18);
+  background: #7B2439;
+}
+
+.heart-pin-symbol {
+  font-size: 20px;
+  line-height: 1;
+  display: block;
+  user-select: none;
+}
+
+.heart-pin-label {
+  margin-top: 4px;
+  background: #FDFBF7;
+  color: #601D2D;
+  border: 1.5px solid #601D2D;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.heart-pin-wrapper:hover .heart-pin-label {
+  background-color: #601D2D;
+  color: #FDFBF7;
+  transform: translateY(-2px);
+}
+
+@keyframes heartPulseGlow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.65);
+    opacity: 0;
+  }
+}
+
+/* Bottom Sheet Personalizzabile in Stile Padlet / Google Maps */
+.map-bottom-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: 85%;
+  overflow-y: auto;
+  background: #FDFBF7; /* Colore Oat chiaro */
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(120%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.map-bottom-sheet.is-open {
+  transform: translateY(0);
+}
+
+.map-sheet-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 26px;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(96, 29, 45, 0.08);
+  border: none;
+  border-radius: 50%;
+  color: #601D2D;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  z-index: 10;
+}
+
+.map-sheet-close:hover {
+  background-color: #601D2D;
+  color: #FAF5EA;
+  transform: scale(1.08);
+}
+
+/* Galleria Immagini Scorrevole (Carousel / Slider con Scroll-Snap) */
+.sheet-gallery-wrapper {
+  position: relative;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.sheet-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sheet-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.sheet-gallery img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+.sheet-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 5px 10px;
+  border-radius: 12px;
+  z-index: 10;
+}
+
+.sheet-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.sheet-dot:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: scale(1.15);
+}
+
+.sheet-dot.active {
+  background: #FDFBF7;
+  transform: scale(1.3);
+}
+
+.map-sheet-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.map-sheet-title {
+  color: #601D2D;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.map-sheet-desc {
+  color: #333333;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Custom Popup Stile Padlet (retrocompatibile) */
+.leaflet-popup-content-wrapper {
+  padding: 0 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background-color: #FAF5EA !important;
+  box-shadow: 0 8px 24px rgba(96, 29, 45, 0.22) !important;
+  border: 1.5px solid rgba(96, 29, 45, 0.2) !important;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+  width: 220px !important;
+}
+
+.leaflet-popup-tip {
+  background-color: #FAF5EA !important;
+  border: 1px solid rgba(96, 29, 45, 0.15) !important;
+}
+
+.padlet-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.padlet-card-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  display: block;
+}
+
+.padlet-card-body {
+  padding: 10px 12px 12px 12px;
+}
+
+.padlet-card-title {
+  margin: 0 0 4px 0;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-bordeaux);
+}
+
+.padlet-card-desc {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: #4A3E39;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  top: 6px !important;
+  right: 6px !important;
+  color: #FFFFFF !important;
+  background: rgba(96, 29, 45, 0.75) !important;
+  border-radius: 50% !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  z-index: 10 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  background: #601D2D !important;
+  color: #EDD5AB !important;
+}
+
+.leaflet-bar {
+  border: 1.5px solid rgba(96, 29, 45, 0.25) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+}
+
+.leaflet-bar a {
+  background-color: #FAF5EA !important;
+  color: #601D2D !important;
+  border-bottom: 1px solid rgba(96, 29, 45, 0.15) !important;
+}
+
+.leaflet-bar a:hover {
+  background-color: #601D2D !important;
+  color: #EDD5AB !important;
+}
+
+/* Modulo RSVP */
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-bordeaux);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  border: 1.5px solid rgba(96, 29, 45, 0.25);
+  border-radius: 10px;
+  background-color: #FAF5EA;
+  color: var(--color-bordeaux);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-bordeaux);
+  box-shadow: 0 0 0 3px rgba(96, 29, 45, 0.12);
+}
+
+.radio-pill-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.radio-pill input[type="radio"] {
+  display: none;
+}
+
+.radio-pill-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-align: center;
+  border: 1.5px solid rgba(96, 29, 45, 0.25);
+  border-radius: 10px;
+  background-color: #FAF5EA;
+  color: var(--color-bordeaux);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-pill input[type="radio"]:checked + .radio-pill-btn {
+  background-color: var(--color-bordeaux);
+  color: #EDD5AB;
+  border-color: var(--color-bordeaux);
+  box-shadow: 0 2px 8px rgba(96, 29, 45, 0.25);
+}
+
+/* Sottocampo Dinamico Opzioni Bambini */
+.children-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(237, 213, 171, 0.32);
+  border: 1px dashed rgba(96, 29, 45, 0.35);
+  border-radius: 12px;
+  margin-top: 8px;
+  animation: fadeInDown 0.25s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.children-options-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-bordeaux);
+  margin-bottom: 2px;
+}
+
+.children-checkboxes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.luxury-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #FAF5EA;
+  border: 1.5px solid rgba(96, 29, 45, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.luxury-checkbox-label:hover {
+  border-color: rgba(96, 29, 45, 0.5);
+  background: #FFFDF9;
+}
+
+.luxury-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-bordeaux);
+  cursor: pointer;
+  margin: 0;
+}
+
+.luxury-checkbox-label:has(input[type="checkbox"]:checked) {
+  background: rgba(96, 29, 45, 0.08);
+  border-color: var(--color-bordeaux);
+  box-shadow: 0 1px 4px rgba(96, 29, 45, 0.12);
+}
+
+.luxury-checkbox-label .checkbox-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-bordeaux);
+}
+
+/* Pulsanti Azione Modali */
+.sheet-actions {
+  margin-top: 14px;
+}
+
+.action-btn {
+  width: 100%;
+  padding: 13px 18px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.action-btn-primary {
+  background-color: var(--color-bordeaux);
+  color: #EDD5AB;
+}
+
+.action-btn-primary:hover {
+  background-color: var(--color-bordeaux-hover);
+}
+
+.action-btn-submit {
+  background-color: var(--color-bordeaux);
+  color: #EDD5AB;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-top: 6px;
+}
+
+.action-btn-submit:hover {
+  background-color: var(--color-bordeaux-hover);
+}
+
+.action-btn-submit:disabled {
+  opacity: 0.8;
+  cursor: wait;
+  filter: saturate(0.9);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner-icon {
+  display: inline-block;
+  animation: spin 0.9s linear infinite;
+  margin-right: 8px;
+  font-size: 1.15rem;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.action-btn-secondary {
+  background-color: transparent;
+  color: var(--color-bordeaux);
+  border: 1.5px solid var(--color-bordeaux);
+}
+
+.action-btn-secondary:hover {
+  background-color: rgba(96, 29, 45, 0.08);
+}
+
+.rsvp-feedback-success {
+  text-align: center;
+  padding: 24px 10px;
+}
+
+.success-icon {
+  font-size: 2.8rem;
+  color: var(--color-gold);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.success-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-bordeaux);
+  margin-bottom: 8px;
+}
+
+.success-text {
+  font-size: 0.96rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}

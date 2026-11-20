@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#EDD5AB">
+  <meta name="description" content="Antonella Mele &amp; Pasquale Barbato — Domenica 22 Agosto 2027. Dashboard e informazioni per gli ospiti.">
+  <title>Antonella Mele &amp; Pasquale Barbato — 22 Agosto 2027</title>
+
+  <!-- Google Fonts Preconnect & Caricamento Font di Lusso -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Baskervville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Foglio di Stile Principale -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       LAYOUT PRINCIPALE DELLA LANDING PAGE / DASHBOARD WEB APP
+       Mobile-First, elegante, bilanciato verticalmente
+       ==================================================================== -->
+  <div class="dashboard-wrapper">
+
+    <!-- Decorazioni Floreali nei 4 Angoli (Cornice Luxury Completa) -->
+    <img src="fiore-top-left.png" alt="" class="corner-flower corner-top-left" aria-hidden="true" width="247" height="316">
+    <img src="fiore-top-right.png" alt="" class="corner-flower corner-top-right" aria-hidden="true" width="248" height="315">
+    <img src="fiore-bottom-left.png" alt="" class="corner-flower corner-bottom-left" aria-hidden="true" width="247" height="316">
+    <img src="fiore-bottom-right.png" alt="" class="corner-flower corner-bottom-right" aria-hidden="true" width="248" height="315">
+
+    <main class="dashboard-container" role="main">
+
+      <!-- 1. LOGO E CITAZIONE (Centrati in alto) -->
+      <header class="dashboard-header">
+        <div class="logo-wrapper">
+          <img src="logo.png" alt="Monogramma Antonella &amp; Pasquale" class="wedding-monogram" width="86" height="56">
+        </div>
+
+        <blockquote class="wedding-quote quote-garamond">
+          <p class="quote-verse">Una vita accanto,</p>
+          <p class="quote-verse">la mente funziona a incastro,</p>
+          <p class="quote-verse">A capire a fondo il mondo</p>
+          <p class="quote-verse">ogni giorno ti serve l'altro.</p>
+        </blockquote>
+      </header>
+
+      <!-- 2. IL NUCLEO (Al centro, spostato più in alto e con nomi grandi) -->
+      <!-- I nomi in Edwardian Script: Antonella Mele / & / Pasquale Barbato con animazione Spotlight -->
+      <section class="dashboard-core" aria-label="Gli Sposi e la Data">
+        <h1 class="wedding-names names-script">
+          <span class="name-line name-bride">Antonella Mele</span>
+          <span class="name-ampersand">&amp;</span>
+          <span class="name-line name-groom">Pasquale Barbato</span>
+        </h1>
+
+        <div class="fine-art-separator" aria-hidden="true">
+          <span class="sep-line"></span>
+          <span class="sep-gem">&#10022;</span>
+          <span class="sep-line"></span>
+        </div>
+
+        <!-- Data con Anno 2027 e Luogo ad Alta Leggibilità -->
+        <div class="wedding-meta">
+          <p class="meta-date">DOMENICA &middot; 22 &middot; AGOSTO &middot; 2027</p>
+          <p class="meta-venue">NOCI, PUGLIA</p>
+        </div>
+
+        <!-- Conto alla Rovescia (Countdown) per il 22 Agosto 2027 -->
+        <div class="wedding-countdown" id="weddingCountdown" aria-label="Conto alla rovescia per il nostro matrimonio">
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdDays">000</span>
+            <span class="countdown-lbl">GIORNI</span>
+          </div>
+          <span class="countdown-divider" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdHours">00</span>
+            <span class="countdown-lbl">ORE</span>
+          </div>
+          <span class="countdown-divider" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdMinutes">00</span>
+            <span class="countdown-lbl">MINUTI</span>
+          </div>
+          <span class="countdown-divider" aria-hidden="true">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdSeconds">00</span>
+            <span class="countdown-lbl">SECONDI</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. NAVIGAZIONE A GRIGLIA 2x2 (In basso) -->
+      <nav class="dashboard-nav" aria-label="Sezioni della Web App Ospiti">
+        <div class="grid-2x2">
+          <!-- Bottone 1: L'Evento -->
+          <button type="button" class="dash-btn btn-outline" data-modal-target="modal-evento" id="btnEvento" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text">L'Evento</span>
+          </button>
+
+          <!-- Bottone 2: Il Luogo -->
+          <button type="button" class="dash-btn btn-outline" data-modal-target="modal-luogo" id="btnLuogo" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text">Il Luogo</span>
+          </button>
+
+          <!-- Bottone 3: Logistica -->
+          <button type="button" class="dash-btn btn-outline" data-modal-target="modal-logistica" id="btnLogistica" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text">Logistica</span>
+          </button>
+
+          <!-- Bottone 4: R.S.V.P. (Priorità visiva: Sfondo Bordeaux pieno, testo Oat) -->
+          <button type="button" class="dash-btn btn-primary" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text">R.S.V.P.</span>
+          </button>
+        </div>
+      </nav>
+
+    </main>
+  </div>
+
+  <!-- ====================================================================
+       SISTEMA MODALI / BOTTOM SHEET INTERATTIVE PER GLI OSPITI
+       Permette l'esperienza "Web App" fluida su mobile e desktop
+       ==================================================================== -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+    <div class="modal-sheet" id="modalSheet" role="dialog" aria-modal="true" tabindex="-1">
+      
+      <!-- Drag handle per dispositivi mobile (stile iOS bottom sheet) -->
+      <div class="sheet-handle" aria-hidden="true"></div>
+
+      <!-- Pulsante chiusura morbido -->
+      <button type="button" class="sheet-close-btn" id="modalCloseBtn" aria-label="Chiudi finestra">
+        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Contenuto dinamico delle modali -->
+      <div class="sheet-body" id="modalBody"></div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       TEMPLATE DEI CONTENUTI PER LE 4 MODALI
+       ==================================================================== -->
+  <!-- Template 1: L'Evento -->
+  <template id="tmpl-modal-evento">
+    <div class="sheet-content">
+      <div class="sheet-header">
+        <p class="sheet-badge">Programma della Giornata</p>
+        <h2 class="sheet-title">L'Evento</h2>
+        <p class="sheet-subtitle">Domenica 22 Agosto 2027 &mdash; Masseria Bonelli</p>
+      </div>
+
+      <div class="timeline-list">
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-info">
+            <h3 class="timeline-title">La Cerimonia</h3>
+            <p class="timeline-desc">Accoglienza degli ospiti e scambio delle promesse nuziali.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-info">
+            <h3 class="timeline-title">Aperitivo nel Giardino</h3>
+            <p class="timeline-desc">Cocktail di benvenuto e finger food tra gli ulivi secolari di Puglia.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-info">
+            <h3 class="timeline-title">La Cena Conviviale</h3>
+            <p class="timeline-desc">I sapori autentici della tradizione pugliese sotto le stelle.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-time">23:30</div>
+          <div class="timeline-info">
+            <h3 class="timeline-title">Taglio della Torta &amp; Party</h3>
+            <p class="timeline-desc">Brindisi finale, open bar, musica dal vivo e balli fino a tarda notte.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-actions">
+        <button type="button" class="action-btn" id="btnAddToCalendar">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          Aggiungi al Calendario
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 2: Il Luogo -->
+  <template id="tmpl-modal-luogo">
+    <div class="sheet-content">
+      <div class="sheet-header">
+        <p class="sheet-badge">La Location</p>
+        <h2 class="sheet-title">Masseria Bonelli</h2>
+        <p class="sheet-subtitle">Noci &mdash; Valle d'Itria, Puglia</p>
+      </div>
+
+      <div class="venue-card">
+        <p class="venue-desc">
+          Immersa nel paesaggio suggestivo della Valle d'Itria, tra muretti a secco, querce monumentali e trulli storici, 
+          <strong>Masseria Bonelli</strong> accoglierà la nostra festa in un'atmosfera intima, autentica e senza tempo.
+        </p>
+
+        <div class="venue-details">
+          <div class="detail-row">
+            <span class="detail-icon" aria-hidden="true">&#9873;</span>
+            <div class="detail-text">
+              <strong>Indirizzo</strong>
+              <span>Strada Provinciale 161 &mdash; 70015 Noci (BA), Puglia</span>
+            </div>
+          </div>
+          <div class="detail-row">
+            <span class="detail-icon" aria-hidden="true">&#9881;</span>
+            <div class="detail-text">
+              <strong>Coordinate Navigatore</strong>
+              <span>40.7852&deg; N, 17.1348&deg; E</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-actions-col">
+        <a href="https://maps.google.com/?q=Masseria+Bonelli+Noci+Puglia" target="_blank" rel="noopener noreferrer" class="action-btn">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          Apri su Google Maps
+        </a>
+        <a href="https://maps.apple.com/?q=Masseria+Bonelli+Noci+Puglia" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-secondary">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
+          </svg>
+          Apri su Apple Maps
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 3: Logistica -->
+  <template id="tmpl-modal-logistica">
+    <div class="sheet-content">
+      <div class="sheet-header">
+        <p class="sheet-badge">Guida per gli Ospiti</p>
+        <h2 class="sheet-title">Logistica</h2>
+        <p class="sheet-subtitle">Tutto ciò che serve per vivere al meglio la giornata</p>
+      </div>
+
+      <div class="info-blocks">
+        <div class="info-block">
+          <h3 class="info-title">
+            <span class="info-icon">&#10047;</span> Dress Code
+          </h3>
+          <p class="info-desc">
+            <strong>Formal Elegance:</strong> Abiti eleganti e confortevoli. Consigliati i toni caldi della terra, avorio, denim e tessuti leggeri estivi. Per le signore è consigliato un tacco comodo per il giardino.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h3 class="info-title">
+            <span class="info-icon">&#9672;</span> Parcheggio
+          </h3>
+          <p class="info-desc">
+            All'interno della Masseria è disponibile un ampio <strong>parcheggio privato gratuito</strong> con servizio di accoglienza per tutti gli invitati.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h3 class="info-title">
+            <span class="info-icon">&#9992;</span> Aeroporti &amp; Stazioni
+          </h3>
+          <p class="info-desc">
+            <strong>Aeroporto di Bari Palese (BRI):</strong> ca. 65 km (50 min in auto).<br>
+            <strong>Aeroporto di Brindisi (BDS):</strong> ca. 75 km (55 min in auto).<br>
+            <strong>Stazione FS più vicina:</strong> Gioia del Colle o Fasano.
+          </p>
+        </div>
+
+        <div class="info-block">
+          <h3 class="info-title">
+            <span class="info-icon">&#9733;</span> Pernottamenti Consigliati
+          </h3>
+          <p class="info-desc">
+            Nel borgo di Noci e nei comuni limitrofi (Alberobello, Locorotondo) sono disponibili splendidi B&amp;B e resort in trulli convenzionati. Contattateci per indicazioni mirate!
+          </p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 4: R.S.V.P. -->
+  <template id="tmpl-modal-rsvp">
+    <div class="sheet-content">
+      <div class="sheet-header">
+        <p class="sheet-badge">Conferma di Partecipazione</p>
+        <h2 class="sheet-title">R.S.V.P.</h2>
+        <p class="sheet-subtitle">Gradita gentile conferma entro il 30 Giugno 2027</p>
+      </div>
+
+      <form class="rsvp-form" id="sheetRsvpForm" novalidate>
+        <div class="form-field">
+          <label for="rsvpName" class="form-label">Nome e Cognome degli Invitati *</label>
+          <input type="text" id="rsvpName" name="rsvpName" class="form-input" placeholder="Es. Mario Rossi &amp; Giulia Bianchi" required autocomplete="name">
+        </div>
+
+        <div class="form-field">
+          <span class="form-label">Conferma Presenza *</span>
+          <div class="rsvp-radio-group">
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="si" checked>
+              <span class="pill-label">Saremo presenti con gioia &#10024;</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="no">
+              <span class="pill-label">Purtroppo non potremo esserci</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field" id="guestsCountField">
+          <label for="rsvpGuests" class="form-label">Numero Ospiti</label>
+          <select id="rsvpGuests" name="rsvpGuests" class="form-select">
+            <option value="1">1 Persona</option>
+            <option value="2" selected>2 Persone</option>
+            <option value="3">3 Persone</option>
+            <option value="4">4 Persone</option>
+            <option value="5+">5 o più persone</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpDietary" class="form-label">Esigenze o Intolleranze Alimentari</label>
+          <input type="text" id="rsvpDietary" name="rsvpDietary" class="form-input" placeholder="Es. Nessuna, celiachia, vegetariano, allergie...">
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpMessage" class="form-label">Un Pensiero o una Canzone per Noi</label>
+          <textarea id="rsvpMessage" name="rsvpMessage" class="form-textarea" rows="2" placeholder="Scrivici una dedica o un brano che vorresti ascoltare..."></textarea>
+        </div>
+
+        <button type="submit" class="action-btn action-btn-submit" id="btnSubmitRsvp">
+          Invia la Conferma
+        </button>
+      </form>
+
+      <!-- Feedback di avvenuta conferma -->
+      <div class="rsvp-feedback-success" id="rsvpSuccessBox" style="display: none;">
+        <span class="success-icon">&#10084;</span>
+        <h3 class="success-title">Grazie di Cuore!</h3>
+        <p class="success-text" id="rsvpSuccessText">La tua risposta è stata registrata con successo. Non vediamo l'ora di festeggiare insieme!</p>
+        <button type="button" class="action-btn action-btn-secondary" id="btnEditRsvp" style="margin-top: 14px;">
+          Modifica Risposta
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Script Funzionale -->
+  <script src="script.js"></script>
+</body>
+</html>

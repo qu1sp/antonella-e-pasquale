@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#EDD5AB">
+  <meta name="description" content="Antonella Mele &amp; Pasquale Barbato â€” Wedding Dashboard.">
+  <title>Antonella Mele &amp; Pasquale Barbato â€” Matrimonio</title>
+
+  <!-- Google Fonts Preconnect & Caricamento Font di Lusso -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Baskervville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=MonteCarlo&family=Pinyon+Script&display=swap" rel="stylesheet">
+
+  <!-- Libreria Mappa Leaflet.js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Foglio di Stile v11 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
+  <link rel="stylesheet" href="style_v13.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       1. HERO SECTION (Prima schermata 100vh)
+       - In alto: Monogramma e Nomi nel Cielo
+       - Al centro: Paesaggio aperto 100% visibile (trulli, ulivi e gattini)
+       - In basso a sinistra: Mappamondo cambio lingua (Italiano / English)
+       - In basso a destra: Invito allo scroll ("Scorri per scoprire")
+       ==================================================================== -->
+  <header class="hero-section" id="heroSection">
+    
+    <!-- Top: Monogramma e Nomi nel Cielo -->
+    <div class="hero-top-sky">
+      <!-- Monogramma -->
+      <div class="wedding-block monogram-block fade-up-item delay-1">
+        <img src="logo.png" alt="Monogramma Antonella &amp; Pasquale" class="wedding-monogram" width="86" height="56">
+      </div>
+
+      <!-- I Nomi degli Sposi in Edwardian Script con glow protettivo -->
+      <div class="wedding-block names-block fade-up-item delay-2" aria-label="Gli Sposi">
+        <h1 class="wedding-names names-script">
+          <span class="name-line name-bride">Antonella Mele</span>
+          <span class="name-ampersand">&amp;</span>
+          <span class="name-line name-groom">Pasquale Barbato</span>
+        </h1>
+      </div>
+    </div>
+
+    <!-- Barra Inferiore Hero: Lingua a Sinistra | Scorri a Destra -->
+    <div class="hero-bottom-bar fade-up-item delay-3">
+      
+      <!-- In Basso a Sinistra: Mappamondo Cambio Lingua -->
+      <div class="lang-switcher" id="langSwitcher">
+        <button type="button" class="lang-toggle-btn" id="langToggleBtn" aria-label="Cambia lingua / Change language" aria-haspopup="true" aria-expanded="false">
+          <svg class="globe-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#601D2D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span class="lang-current-code" id="currentLangLabel">IT</span>
+        </button>
+
+        <!-- Popover Menu Lingua (si apre verso l'alto a sinistra) -->
+        <div class="lang-menu" id="langMenu" role="menu" aria-label="Seleziona lingua / Select language">
+          <button type="button" class="lang-option is-active" data-lang="it" role="menuitem">
+            <span class="lang-flag" aria-hidden="true">ðŸ‡®ðŸ‡¹</span>
+            <span class="lang-label">Italiano</span>
+            <span class="lang-check" aria-hidden="true">&check;</span>
+          </button>
+          <button type="button" class="lang-option" data-lang="en" role="menuitem">
+            <span class="lang-flag" aria-hidden="true">ðŸ‡¬ðŸ‡§</span>
+            <span class="lang-label">English</span>
+            <span class="lang-check" aria-hidden="true">&check;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- In Basso a Destra: Pillola Interattiva "Scorri per scoprire" -->
+      <a href="#actionSection" class="scroll-indicator" aria-label="Scorri per scoprire i dettagli del matrimonio">
+        <span class="scroll-text" data-i18n="scroll_cta">Scorri per scoprire</span>
+        <span class="scroll-chevron" aria-hidden="true">
+          <svg width="18" height="12" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1.5L11 11.5L21 1.5" stroke="#601D2D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+
+    </div>
+
+  </header>
+
+  <!-- ====================================================================
+       2. ACTION SECTION (Seconda schermata - Sotto il fold)
+       1. In Cima: Conto alla Rovescia ("until forever begins" / "fino all'inizio del nostro per sempre")
+       2. Primo Blocco: La Citazione d'Amore con Cornice di Lusso & Fregi
+       3. Secondo Blocco: I Bottoni di Navigazione + Bottone R.S.V.P.
+       Tutti mantengono il colore caldo Oat del vetro: rgba(237, 213, 171, 0.48)
+       ==================================================================== -->
+  <main class="action-section" id="actionSection">
+    
+    <div class="action-wrapper">
+      
+      <!-- 1. CAPSULA CONTO ALLA ROVESCIA NELLA SECONDA SCHERMATA -->
+      <section class="countdown-action-capsule" aria-label="Conto alla rovescia per il nostro matrimonio">
+        <div class="wedding-countdown countdown-horizontal-text" id="weddingCountdown">
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdDays">000</span>
+            <span class="countdown-lbl" data-i18n="cd_days">GIORNI</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">&middot;</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdHours">00</span>
+            <span class="countdown-lbl" data-i18n="cd_hours">ORE</span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">&middot;</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdMinutes">00</span>
+            <span class="countdown-lbl">
+              <span class="lbl-full" data-i18n="cd_minutes">MINUTI</span>
+              <span class="lbl-short" data-i18n="cd_minutes_short">MIN</span>
+            </span>
+          </div>
+          <span class="countdown-sep" aria-hidden="true">&middot;</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cdSeconds">00</span>
+            <span class="countdown-lbl">
+              <span class="lbl-full" data-i18n="cd_seconds">SECONDI</span>
+              <span class="lbl-short" data-i18n="cd_seconds_short">SEC</span>
+            </span>
+          </div>
+        </div>
+        <p class="countdown-tagline countdown-outro" data-i18n="cd_tagline">fino all'inizio del nostro per sempre</p>
+      </section>
+
+      <!-- 2. PRIMO BLOCCO: La Citazione con Cornice di Lusso e Fregi Fine-Art -->
+      <section class="glass-panel glass-card-quote luxury-quote-panel" aria-label="La Nostra Citazione">
+        
+        <div class="luxury-quote-frame">
+          
+          <!-- 4 Angoli Ornamentali SVG Fine-Art Filigree -->
+          <svg class="corner-filigree corner-tl" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 26V11C2 6.03 6.03 2 11 2H26" stroke="#601D2D" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M5 26V13C5 8.58 8.58 5 13 5H26" stroke="#601D2D" stroke-width="0.6" stroke-opacity="0.5" stroke-linecap="round"/>
+            <path d="M2 11C2 7.5 5 4 9 5.5C11.5 6.5 12 9.5 9.5 11C7 12.5 5 11 5 11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="12,9 13.5,12 12,15 10.5,12" fill="#601D2D"/>
+          </svg>
+
+          <svg class="corner-filigree corner-tr" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 26V11C2 6.03 6.03 2 11 2H26" stroke="#601D2D" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M5 26V13C5 8.58 8.58 5 13 5H26" stroke="#601D2D" stroke-width="0.6" stroke-opacity="0.5" stroke-linecap="round"/>
+            <path d="M2 11C2 7.5 5 4 9 5.5C11.5 6.5 12 9.5 9.5 11C7 12.5 5 11 5 11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="12,9 13.5,12 12,15 10.5,12" fill="#601D2D"/>
+          </svg>
+
+          <svg class="corner-filigree corner-bl" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 26V11C2 6.03 6.03 2 11 2H26" stroke="#601D2D" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M5 26V13C5 8.58 8.58 5 13 5H26" stroke="#601D2D" stroke-width="0.6" stroke-opacity="0.5" stroke-linecap="round"/>
+            <path d="M2 11C2 7.5 5 4 9 5.5C11.5 6.5 12 9.5 9.5 11C7 12.5 5 11 5 11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="12,9 13.5,12 12,15 10.5,12" fill="#601D2D"/>
+          </svg>
+
+          <svg class="corner-filigree corner-br" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M2 26V11C2 6.03 6.03 2 11 2H26" stroke="#601D2D" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M5 26V13C5 8.58 8.58 5 13 5H26" stroke="#601D2D" stroke-width="0.6" stroke-opacity="0.5" stroke-linecap="round"/>
+            <path d="M2 11C2 7.5 5 4 9 5.5C11.5 6.5 12 9.5 9.5 11C7 12.5 5 11 5 11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="12,9 13.5,12 12,15 10.5,12" fill="#601D2D"/>
+          </svg>
+
+          <!-- Fregio Botanico Superiore (Foglie d'Ulivo Pugliesi & Diamante Centrale) -->
+          <div class="luxury-ornament ornament-top" aria-hidden="true">
+            <svg class="botanical-svg" width="230" height="22" viewBox="0 0 230 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="12" y1="11" x2="68" y2="11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+              <line x1="162" y1="11" x2="218" y2="11" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+              <path d="M68 11C78 11 82 8 88 5C84 8 84 12 88 15C82 12 78 11 68 11Z" fill="#601D2D" fill-opacity="0.85"/>
+              <path d="M88 11C94 11 98 7 104 4C100 8 100 12 104 15C98 12 94 11 88 11Z" fill="#601D2D" fill-opacity="0.85"/>
+              <path d="M162 11C152 11 148 8 142 5C146 8 146 12 142 15C148 12 152 11 162 11Z" fill="#601D2D" fill-opacity="0.85"/>
+              <path d="M142 11C136 11 132 7 126 4C130 8 130 12 126 15C132 12 136 11 142 11Z" fill="#601D2D" fill-opacity="0.85"/>
+              <polygon points="115,11 110,8.5 106,11 110,13.5" fill="#601D2D"/>
+              <polygon points="115,11 120,8.5 124,11 120,13.5" fill="#601D2D"/>
+              <circle cx="115" cy="11" r="2.2" fill="#601D2D"/>
+            </svg>
+          </div>
+
+          <!-- Citazione d'Amore in Libre Baskerville corsivo -->
+          <blockquote class="quote-block">
+            <p class="quote-verse" data-i18n="quote_v1">Una vita accanto,</p>
+            <p class="quote-verse" data-i18n="quote_v2">la mente funziona a incastro,</p>
+            <p class="quote-verse" data-i18n="quote_v3">A capire a fondo il mondo</p>
+            <p class="quote-verse" data-i18n="quote_v4">ogni giorno ti serve l'altro.</p>
+          </blockquote>
+
+          <!-- Fregio Floreale / Calligrafico Inferiore -->
+          <div class="luxury-ornament ornament-bottom" aria-hidden="true">
+            <svg class="botanical-svg" width="170" height="18" viewBox="0 0 170 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="16" y1="9" x2="62" y2="9" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+              <line x1="108" y1="9" x2="154" y2="9" stroke="#601D2D" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+              <path d="M62 9C72 9 76 6 81 4C78 7 78 11 81 14C76 11 72 9 62 9Z" fill="#601D2D" fill-opacity="0.8"/>
+              <path d="M108 9C98 9 94 6 89 4C92 7 92 11 89 14C94 11 98 9 108 9Z" fill="#601D2D" fill-opacity="0.8"/>
+              <polygon points="85,4.5 88.5,9 85,13.5 81.5,9" fill="#601D2D"/>
+            </svg>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 3. SECONDO BLOCCO: I Bottoni di Navigazione + RSVP -->
+      <section class="glass-panel glass-card-nav" aria-label="Navigazione e Conferma Presenza">
+
+        <!-- Call to Action Principale: Bottone R.S.V.P. (Sfondo Bordeaux #601D2D, Testo Oat #EDD5AB) -->
+        <div class="rsvp-horizontal-wrapper">
+          <button type="button" class="dash-btn btn-primary btn-rsvp-wide" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_rsvp">R.S.V.P. &mdash; CONFERMA PRESENZA</span>
+          </button>
+        </div>
+
+        <!-- Griglia 2x2 dei 4 Bottoni Informativi in color Oat (#EDD5AB) con ombra -->
+        <div class="grid-2x2">
+          <!-- Bottone 1: L'Evento -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-evento" id="btnEvento" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_evento">L'Evento</span>
+          </button>
+
+          <!-- Bottone 2: Il Luogo -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-luogo" id="btnLuogo" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_luogo">Il Luogo</span>
+          </button>
+
+          <!-- Bottone 3: Logistica -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-logistica" id="btnLogistica" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_logistica">Logistica</span>
+          </button>
+
+          <!-- Bottone 4: Valle d'Itria -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-valle-itria" id="btnValleItria" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_valle">Valle d'Itria</span>
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ====================================================================
+       SISTEMA MODALI / BOTTOM SHEET INTERATTIVE PER GLI OSPITI
+       ==================================================================== -->
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-sheet" id="modalSheet" tabindex="-1">
+      <div class="modal-grabber" aria-hidden="true"></div>
+      <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Chiudi la scheda">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Template 1: L'Evento / The Event -->
+  <template id="tmpl-modal-evento">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker" data-i18n="evento_kicker">Il Programma</p>
+        <h2 class="sheet-title" data-i18n="evento_title">L'Evento</h2>
+        <p class="sheet-subtitle" data-i18n="evento_subtitle">Domenica 22 Agosto 2027 &middot; Ore 16:30</p>
+      </header>
+      <div class="sheet-timeline">
+        <div class="timeline-step">
+          <div class="time-badge">16:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title" data-i18n="evento_t1_title">Accoglienza &amp; Benvenuto</h3>
+            <p class="step-text" data-i18n="evento_t1_desc">Benvenuto tra i giardini della Masseria con infusi freschi e rinfresco estivo pugliese.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">17:00</div>
+          <div class="timeline-desc">
+            <h3 class="step-title" data-i18n="evento_t2_title">La Cerimonia</h3>
+            <p class="step-text" data-i18n="evento_t2_desc">Rito immerso tra querce secolari e profumo di terra pugliese.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">18:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title" data-i18n="evento_t3_title">Aperitivo nell'Aia</h3>
+            <p class="step-text" data-i18n="evento_t3_desc">Musica dal vivo, finger food locale e tramonto tra i muretti a secco.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">20:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title" data-i18n="evento_t4_title">Cena sotto le Stelle</h3>
+            <p class="step-text" data-i18n="evento_t4_desc">Banchetto conviviale con sapori autentici della nostra terra e vini selezionati.</p>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="time-badge">23:30</div>
+          <div class="timeline-desc">
+            <h3 class="step-title" data-i18n="evento_t5_title">Taglio Torta &amp; Party</h3>
+            <p class="step-text" data-i18n="evento_t5_desc">Dolci della tradizione, open bar e danze fino a notte fonda.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sheet-actions">
+        <button type="button" class="action-btn action-btn-primary" id="btnAddToCalendar">
+          <span class="btn-icon">&#128197;</span> <span data-i18n="evento_btn_cal">Aggiungi al Calendario (iCal / Google)</span>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 2: Il Luogo / The Venue -->
+  <template id="tmpl-modal-luogo">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker" data-i18n="luogo_kicker">La Nostra Cornice</p>
+        <h2 class="sheet-title" data-i18n="luogo_title">Il Luogo</h2>
+        <p class="sheet-subtitle" data-i18n="luogo_subtitle">Masseria Bonelli &middot; Noci (Bari)</p>
+      </header>
+      <div class="sheet-body-text">
+        <p class="lead-paragraph" data-i18n="luogo_story">
+          Un'antica masseria fortificata del XVII secolo incastonata tra ulivi secolari, trulli storici e boschi di querce. Un luogo autentico dove il tempo sembra essersi fermato per celebrare l'amore.
+        </p>
+        <div class="venue-card">
+          <div class="venue-info">
+            <span class="venue-name">Masseria Bonelli</span>
+            <span class="venue-address" data-i18n="luogo_info_addr_val">Strada Provinciale 161, 70015 Noci (BA)</span>
+          </div>
+        </div>
+        <p class="venue-notes" data-i18n="luogo_info_dress_val">
+          Eleganza estiva pugliese (abiti leggeri e calzature adatte al prato)
+        </p>
+      </div>
+      <div class="sheet-actions">
+        <a href="https://maps.google.com/?q=Masseria+Bonelli+Noci+Puglia" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-primary">
+          <span class="btn-icon">&#128506;</span> <span data-i18n="luogo_btn_maps">Apri in Google Maps</span>
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 3: Logistica / Logistics -->
+  <template id="tmpl-modal-logistica">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker" data-i18n="logistica_kicker">Come Raggiungerci</p>
+        <h2 class="sheet-title" data-i18n="logistica_title">Logistica &amp; Viaggi</h2>
+        <p class="sheet-subtitle" data-i18n="logistica_subtitle">Tutte le informazioni per arrivare e soggiornare sereni</p>
+      </header>
+      <div class="logistics-accordion">
+        <article class="logistics-card">
+          <h3 class="logistics-title" data-i18n="logistica_air_title">&#9992;&#65039; Aeroporti Consigliati</h3>
+          <p class="logistics-text" data-i18n="logistica_air_desc">
+            Bari Karol Wojty&#322;a (BRI) dista circa 65 km (50 min in auto). Brindisi Papola Casale (BDS) dista circa 75 km (55 min in auto). Consigliamo il noleggio auto per muoversi liberamente in Valle d'Itria.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title" data-i18n="logistica_train_title">&#128642; In Treno</h3>
+          <p class="logistics-text" data-i18n="logistica_train_desc">
+            Stazione Centrale di Bari, poi treno regionale o transfer privato per Noci/Alberobello.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title" data-i18n="logistica_shuttle_title">&#128663; Navetta &amp; Parcheggio</h3>
+          <p class="logistics-text" data-i18n="logistica_shuttle_desc">
+            Ampio parcheggio privato all'interno della Masseria. Su richiesta nella conferma RSVP organizzeremo navette dagli hotel convenzionati.
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title" data-i18n="logistica_stay_title">&#127976; Dove Alloggiare</h3>
+          <p class="logistics-text">
+            <span data-i18n="logistica_stay_desc">Abbiamo selezionato e concordato tariffe speciali con alcune strutture di charme tra Noci e Alberobello:</span><br>
+            <strong data-i18n="logistica_code_label">Convenzione "Matrimonio Antonella &amp; Pasquale"</strong>
+          </p>
+        </article>
+      </div>
+      <div class="sheet-actions">
+        <a href="#actionSection" class="action-btn action-btn-secondary" onclick="document.getElementById('modalCloseBtn').click(); setTimeout(() => document.getElementById('btnRsvp').click(), 250);">
+          <span class="btn-icon">&#128652;</span> <span data-i18n="logistica_btn_shuttle">Richiedi Assistenza Navetta</span>
+        </a>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 4: Valle d'Itria / Itria Valley (Mappa Interattiva con Bottom Sheet Padlet/Google Maps) -->
+  <template id="tmpl-modal-valle-itria">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker" data-i18n="valle_kicker">Guida per gli Ospiti</p>
+        <h2 class="sheet-title" data-i18n="valle_title">Valle d'Itria e dintorni</h2>
+        <p class="sheet-subtitle" data-i18n="valle_subtitle">I nostri consigli per godervi al meglio questi giorni</p>
+      </header>
+      <div class="map-wrapper" style="position: relative; overflow: hidden; border-radius: 12px; width: 100%;">
+        <div id="pugliaMap" style="height: 60vh; width: 100%; border-radius: 12px; z-index: 1;"></div>
+        <!-- Bottom Sheet a comparsa dal basso in stile Padlet/Google Maps con Galleria Carousel -->
+        <div id="mapBottomSheet" class="map-bottom-sheet">
+          <button id="closeMapSheet" class="map-sheet-close" type="button" aria-label="Chiudi scheda">&times;</button>
+          <div class="sheet-gallery-wrapper">
+            <div id="sheetGallery" class="sheet-gallery"></div>
+            <div id="sheetDots" class="sheet-dots"></div>
+          </div>
+          <h3 id="sheetTitle" class="map-sheet-title"></h3>
+          <p id="sheetDesc" class="map-sheet-desc"></p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Template 5: R.S.V.P. / Confirm Attendance -->
+  <template id="tmpl-modal-rsvp">
+    <div class="sheet-content">
+      <header class="sheet-header">
+        <p class="sheet-kicker" data-i18n="rsvp_kicker">La Vostra Presenza</p>
+        <h2 class="sheet-title" data-i18n="rsvp_title">R.S.V.P.</h2>
+        <p class="sheet-subtitle" data-i18n="rsvp_subtitle">Vi preghiamo di confermare entro il 14 Febbraio 2027</p>
+      </header>
+
+      <form class="rsvp-form" id="sheetRsvpForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <!-- Parametri di configurazione Web3Forms per recapito a ap.matrimonio2027@gmail.com -->
+        <input type="hidden" name="access_key" value="c35893ac-a74d-49ce-8a94-bb3f61771460">
+        <input type="hidden" name="subject" value="ðŸ’ Nuovo R.S.V.P. Matrimonio Antonella &amp; Pasquale">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        <div class="form-field">
+          <label for="rsvpName" class="form-label" data-i18n="rsvp_name_label">Nome e Cognome *</label>
+          <input type="text" id="rsvpName" name="name" class="form-input" placeholder="es: Mario Rossi" data-i18n="rsvp_name_ph" required>
+        </div>
+
+        <div class="form-field">
+          <span class="form-label" data-i18n="rsvp_att_label">Confermi la tua presenza? *</span>
+          <div class="radio-pill-group">
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="si" checked>
+              <span class="radio-pill-btn" data-i18n="rsvp_att_yes">SÃ¬, ci sarÃ² con gioia!</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="rsvpAttendance" value="no">
+              <span class="radio-pill-btn" data-i18n="rsvp_att_no">Purtroppo non potrÃ²</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field" id="guestsCountField">
+          <label for="rsvpGuests" class="form-label" data-i18n="rsvp_guests_label">Numero Totale Ospiti *</label>
+          <input type="number" id="rsvpGuests" name="rsvpGuests" class="form-input" min="1" max="30" value="1" placeholder="es: 2" data-i18n="rsvp_guests_ph" required>
+        </div>
+
+        <!-- Sezione Bambini -->
+        <div class="form-field" id="childrenField">
+          <span class="form-label" data-i18n="rsvp_children_label">Ci sono bambini?</span>
+          <div class="radio-pill-group">
+            <label class="radio-pill">
+              <input type="radio" name="rsvpHasChildren" value="no" checked>
+              <span class="radio-pill-btn" data-i18n="rsvp_children_no">No</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="rsvpHasChildren" value="si">
+              <span class="radio-pill-btn" data-i18n="rsvp_children_yes">SÃ¬</span>
+            </label>
+          </div>
+
+          <!-- Sottocampo dinamico con opzioni da spuntare se presenti bambini -->
+          <div class="children-options-container" id="childrenOptionsField" style="display: none;">
+            <span class="children-options-title" data-i18n="rsvp_children_opt_title">Opzioni per i bambini:</span>
+            <div class="children-checkboxes-list">
+              <label class="luxury-checkbox-label">
+                <input type="checkbox" name="rsvpKidsMenu" value="SÃ¬" id="rsvpKidsMenu">
+                <span class="checkbox-text" data-i18n="rsvp_kids_menu">Menu bambini</span>
+              </label>
+              <label class="luxury-checkbox-label">
+                <input type="checkbox" name="rsvpKidsAnimation" value="SÃ¬" id="rsvpKidsAnimation">
+                <span class="checkbox-text" data-i18n="rsvp_kids_animation">Animazione per bambini</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field" id="dietaryField">
+          <label for="rsvpDietary" class="form-label" data-i18n="rsvp_diet_label">Intolleranze, allergie o preferenze alimentari</label>
+          <input type="text" id="rsvpDietary" name="rsvpDietary" class="form-input" placeholder="es: Nessuna intolleranza, celiachia, vegetariano..." data-i18n="rsvp_diet_ph">
+        </div>
+
+        <div class="form-field">
+          <label for="rsvpMessage" class="form-label" data-i18n="rsvp_msg_label">Vuoi dirci qualcosa? (facoltativo)</label>
+          <textarea id="rsvpMessage" name="message" class="form-textarea" rows="2" placeholder="Scrivi qui eventuali note o richieste..." data-i18n="rsvp_msg_ph"></textarea>
+        </div>
+
+        <button type="submit" class="action-btn action-btn-submit" id="btnSubmitRsvp">
+          <span data-i18n="rsvp_btn_submit">CONFERMA PARTECIPAZIONE</span>
+        </button>
+      </form>
+
+      <div class="rsvp-feedback-success" id="rsvpSuccessBox" style="display: none;">
+        <span class="success-icon">&#10084;</span>
+        <h3 class="success-title" data-i18n="rsvp_success_title">Risposta Registrata!</h3>
+        <p class="success-text" id="rsvpSuccessText">La tua risposta Ã¨ stata registrata con successo. Non vediamo l'ora di festeggiare insieme!</p>
+        <button type="button" class="action-btn action-btn-secondary" id="btnEditRsvp" style="margin-top: 14px;">
+          <span data-i18n="rsvp_btn_edit">Modifica la tua risposta</span>
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <!-- Script Funzionale Versione 11 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
+  <script src="script_v13.js"></script>
+</body>
+</html>
+
