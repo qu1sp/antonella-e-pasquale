@@ -38,7 +38,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=15.10">
+  <link rel="stylesheet" href="style.css?v=15.11">
 </head>
 <body>
 
@@ -342,7 +342,7 @@
       </header>
       <div class="sheet-body-text">
         <p class="lead-paragraph" data-i18n="luogo_story">
-          Un'antica dimora storica del XVI secolo situata nel cuore della campagna di Noci, circondata da ulivi e muretti a secco. Ci vediamo lÃ¬!
+          Un'antica dimora storica del XVI secolo situata nel cuore della campagna di Noci, circondata da ulivi e muretti a secco.
         </p>
         <div class="venue-card">
           <div class="venue-info">
@@ -350,9 +350,6 @@
             <span class="venue-address" data-i18n="luogo_info_addr_val">Strada Provinciale 161, 70015 Noci (BA)</span>
           </div>
         </div>
-        <p class="venue-notes" data-i18n="luogo_info_dress_val">
-          Eleganza estiva pugliese (abiti leggeri e calzature adatte al prato)
-        </p>
       </div>
       <div class="sheet-actions">
         <a href="https://maps.google.com/?q=Masseria+Bonelli+Noci+Puglia" target="_blank" rel="noopener noreferrer" class="action-btn action-btn-primary">
@@ -512,21 +509,21 @@
           </div>
         </div>
 
-        <!-- Domanda Provenienza Ospiti: Arrivi dalla Puglia? -->
+        <!-- Domanda Provenienza Ospiti: Arrivi da Lontano? -->
         <div class="form-field" id="pugliaOriginField">
-          <span class="form-label" data-i18n="rsvp_puglia_label">Arrivi dalla Puglia? *</span>
+          <span class="form-label" data-i18n="rsvp_puglia_label">Arrivi da lontano? *</span>
           <div class="radio-pill-group">
             <label class="radio-pill">
-              <input type="radio" name="from_puglia" value="Sì" id="pugliaYes" checked>
+              <input type="radio" name="from_far" value="Sì" id="farYes">
               <span class="radio-pill-btn" data-i18n="rsvp_puglia_yes">Sì</span>
             </label>
             <label class="radio-pill">
-              <input type="radio" name="from_puglia" value="No" id="pugliaNo">
+              <input type="radio" name="from_far" value="No" id="farNo" checked>
               <span class="radio-pill-btn" data-i18n="rsvp_puglia_no">No</span>
             </label>
           </div>
 
-          <!-- Messaggio caloroso per gli ospiti che viaggiano da fuori Puglia -->
+          <!-- Messaggio caloroso per gli ospiti che viaggiano da lontano -->
           <div class="puglia-travel-note" id="pugliaTravelNote" style="display: none;">
             <div class="travel-note-header">
               <span class="travel-note-icon">&#10024;</span>
@@ -562,7 +559,7 @@
   </template>
 
   <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=15.10"></script>
+  <script src="script.js?v=15.11"></script>
 </body>
 </html>
 

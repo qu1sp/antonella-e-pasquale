@@ -55,12 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
       luogo_kicker: 'La Nostra Cornice',
       luogo_title: 'Il Luogo',
       luogo_subtitle: 'Masseria Bonelli · Noci (Bari)',
-      luogo_story: "Un'antica dimora storica del XVI secolo situata nel cuore della campagna di Noci, circondata da ulivi e muretti a secco. Un luogo autentico dove il tempo sembra essersi fermato per celebrare l'amore. Ci vediamo lì!",
+      luogo_story: "Un'antica dimora storica del XVI secolo situata nel cuore della campagna di Noci, circondata da ulivi e muretti a secco.",
       luogo_info_addr_label: 'Indirizzo',
       luogo_info_addr_val: 'Strada Provinciale 161, 70015 Noci (BA)',
       luogo_info_coords_label: 'Coordinate',
-      luogo_info_dress_label: 'Dress Code',
-      luogo_info_dress_val: 'Eleganza estiva pugliese (abiti leggeri e calzature adatte al prato)',
       luogo_btn_maps: 'Apri in Google Maps',
 
       // Modal: Logistica
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_kids_animation: 'Animazione per bambini',
       rsvp_kids_menu_qty_label: 'Numero di menu bambini',
       rsvp_kids_anim_qty_label: 'Numero di bambini per animazione',
-      rsvp_puglia_label: 'Arrivi dalla Puglia? *',
+      rsvp_puglia_label: 'Arrivi da lontano? *',
       rsvp_puglia_yes: 'Sì',
       rsvp_puglia_no: 'No',
       rsvp_puglia_note: 'Siamo infinitamente grati che tu abbia deciso di essere con noi in questo giorno, nonostante il lungo viaggio. Stiamo selezionando alcune strutture per permettervi di passare qui la notte, vi ricontatteremo al più presto con maggiori dettagli!',
@@ -175,12 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
       luogo_kicker: 'Our Setting',
       luogo_title: 'The Venue',
       luogo_subtitle: 'Masseria Bonelli · Noci (Bari)',
-      luogo_story: 'A 16th-century historic residence nestled in the heart of the Noci countryside, surrounded by olive groves and traditional dry-stone walls. An authentic sanctuary where time stands still to celebrate love. See you there!',
+      luogo_story: 'A 16th-century historic residence nestled in the heart of the Noci countryside, surrounded by olive groves and traditional dry-stone walls.',
       luogo_info_addr_label: 'Address',
       luogo_info_addr_val: 'Strada Provinciale 161, 70015 Noci (BA), Italy',
       luogo_info_coords_label: 'Coordinates',
-      luogo_info_dress_label: 'Dress Code',
-      luogo_info_dress_val: 'Apulian Summer Elegance (light fabrics and lawn-friendly footwear)',
       luogo_btn_maps: 'Open in Google Maps',
 
       // Modal: Logistics
@@ -230,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_kids_animation: 'Kids entertainment',
       rsvp_kids_menu_qty_label: "Number of kids' menus",
       rsvp_kids_anim_qty_label: 'Number of kids for entertainment',
-      rsvp_puglia_label: 'Are you traveling from Puglia? *',
+      rsvp_puglia_label: 'Are you traveling from afar? *',
       rsvp_puglia_yes: 'Yes',
       rsvp_puglia_no: 'No',
       rsvp_puglia_note: 'We are deeply grateful that you have chosen to celebrate with us, despite the long journey. We are currently selecting accommodation options for your stay and will be in touch with you very soon with all the details!',
@@ -597,7 +593,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const kidsAnimationQtyField = document.getElementById('kidsAnimationQtyField');
     const kidsAnimationCountInput = document.getElementById('rsvpKidsAnimationCount');
     const pugliaOriginField = document.getElementById('pugliaOriginField');
-    const pugliaRadios = document.querySelectorAll('input[name="from_puglia"]');
+    const pugliaRadios = document.querySelectorAll('input[name="from_far"], input[name="from_puglia"]');
     const pugliaTravelNote = document.getElementById('pugliaTravelNote');
 
     if (!form) return;
@@ -651,11 +647,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    // Gestione domanda: Arrivi dalla Puglia? (Sì -> nulla, No -> messaggio caloroso)
+    // Gestione domanda: Arrivi da lontano? (Sì -> messaggio caloroso, No -> nulla)
     pugliaRadios.forEach(radio => {
       radio.addEventListener('change', () => {
         if (pugliaTravelNote) {
-          pugliaTravelNote.style.display = (radio.value.toLowerCase() === 'no') ? 'block' : 'none';
+          const val = radio.value.toLowerCase();
+          const isFar = (val === 'si' || val === 'sì' || val === 'yes');
+          pugliaTravelNote.style.display = isFar ? 'block' : 'none';
         }
       });
     });
@@ -680,9 +678,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (pugliaOriginField) {
           pugliaOriginField.style.display = isAttending ? 'flex' : 'none';
-          const checkedPuglia = document.querySelector('input[name="from_puglia"]:checked');
+          const checkedPuglia = document.querySelector('input[name="from_far"]:checked, input[name="from_puglia"]:checked');
           if (pugliaTravelNote) {
-            pugliaTravelNote.style.display = (isAttending && checkedPuglia && checkedPuglia.value.toLowerCase() === 'no') ? 'block' : 'none';
+            const val = checkedPuglia ? checkedPuglia.value.toLowerCase() : '';
+            const isFar = (val === 'si' || val === 'sì' || val === 'yes');
+            pugliaTravelNote.style.display = (isAttending && isFar) ? 'block' : 'none';
           }
         }
         if (dietaryField) {
