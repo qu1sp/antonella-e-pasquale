@@ -38,7 +38,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=15.8">
+  <link rel="stylesheet" href="style.css?v=15.9">
 </head>
 <body>
 
@@ -152,10 +152,45 @@
             </span>
           </div>
         </div>
-        <p class="countdown-tagline countdown-outro" data-i18n="cd_tagline">fino all'inizio del nostro per sempre</p>
+        <p class="countdown-tagline countdown-outro" data-i18n="cd_tagline">all'inizio del nostro per sempre</p>
       </section>
 
-      <!-- 2. PRIMO BLOCCO: La Citazione con Cornice di Lusso e Fregi Fine-Art -->
+      <!-- 2. SECONDO BLOCCO: I Bottoni di Navigazione + Bottone R.S.V.P. in Basso -->
+      <section class="glass-panel glass-card-nav" aria-label="Navigazione e Conferma Presenza">
+
+        <!-- Griglia 2x2 dei 4 Bottoni Informativi in color Oat (#EDD5AB) con ombra -->
+        <div class="grid-2x2">
+          <!-- Bottone 1: L'Evento -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-evento" id="btnEvento" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_evento">L'Evento</span>
+          </button>
+
+          <!-- Bottone 2: Il Luogo -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-luogo" id="btnLuogo" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_luogo">Il Luogo</span>
+          </button>
+
+          <!-- Bottone 3: Logistica -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-logistica" id="btnLogistica" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_logistica">Logistica</span>
+          </button>
+
+          <!-- Bottone 4: Valle d'Itria -->
+          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-valle-itria" id="btnValleItria" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_valle">Valle d'Itria</span>
+          </button>
+        </div>
+
+        <!-- Bottone R.S.V.P. Più Lungo Sotto i 4 Bottoni (Sfondo Bordeaux #601D2D, Testo Oat #EDD5AB) -->
+        <div class="rsvp-horizontal-wrapper">
+          <button type="button" class="dash-btn btn-primary btn-rsvp-wide" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
+            <span class="btn-text" data-i18n="btn_rsvp">R.S.V.P.</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- 3. TERZO BLOCCO: La Citazione con Cornice di Lusso e Fregi Fine-Art -->
       <section class="glass-panel glass-card-quote luxury-quote-panel" aria-label="La Nostra Citazione">
         
         <div class="luxury-quote-frame">
@@ -208,7 +243,7 @@
           <blockquote class="quote-block">
             <p class="quote-verse" data-i18n="quote_v1">Una vita accanto,</p>
             <p class="quote-verse" data-i18n="quote_v2">la mente funziona a incastro,</p>
-            <p class="quote-verse" data-i18n="quote_v3">A capire a fondo il mondo</p>
+            <p class="quote-verse" data-i18n="quote_v3">a capire a fondo il mondo</p>
             <p class="quote-verse" data-i18n="quote_v4">ogni giorno ti serve l'altro.</p>
           </blockquote>
 
@@ -223,41 +258,6 @@
             </svg>
           </div>
 
-        </div>
-
-      </section>
-
-      <!-- 3. SECONDO BLOCCO: I Bottoni di Navigazione + RSVP -->
-      <section class="glass-panel glass-card-nav" aria-label="Navigazione e Conferma Presenza">
-
-        <!-- Call to Action Principale: Bottone R.S.V.P. (Sfondo Bordeaux #601D2D, Testo Oat #EDD5AB) -->
-        <div class="rsvp-horizontal-wrapper">
-          <button type="button" class="dash-btn btn-primary btn-rsvp-wide" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_rsvp">R.S.V.P. &mdash; CONFERMA PRESENZA</span>
-          </button>
-        </div>
-
-        <!-- Griglia 2x2 dei 4 Bottoni Informativi in color Oat (#EDD5AB) con ombra -->
-        <div class="grid-2x2">
-          <!-- Bottone 1: L'Evento -->
-          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-evento" id="btnEvento" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_evento">L'Evento</span>
-          </button>
-
-          <!-- Bottone 2: Il Luogo -->
-          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-luogo" id="btnLuogo" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_luogo">Il Luogo</span>
-          </button>
-
-          <!-- Bottone 3: Logistica -->
-          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-logistica" id="btnLogistica" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_logistica">Logistica</span>
-          </button>
-
-          <!-- Bottone 4: Valle d'Itria -->
-          <button type="button" class="dash-btn btn-oat-card" data-modal-target="modal-valle-itria" id="btnValleItria" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_valle">Valle d'Itria</span>
-          </button>
         </div>
 
       </section>
@@ -526,7 +526,7 @@
   </template>
 
   <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=15.8"></script>
+  <script src="script.js?v=15.9"></script>
 </body>
 </html>
 

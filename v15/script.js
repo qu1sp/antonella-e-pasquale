@@ -18,18 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
       cd_minutes_short: 'MIN',
       cd_seconds: 'SECONDI',
       cd_seconds_short: 'SEC',
-      cd_tagline: "fino all'inizio del nostro per sempre",
+      cd_tagline: "all'inizio del nostro per sempre",
       scroll_cta: 'Scorri per scoprire',
       lang_name: 'Italiano',
 
       // Citazione d'Amore
       quote_v1: 'Una vita accanto,',
       quote_v2: 'la mente funziona a incastro,',
-      quote_v3: 'A capire a fondo il mondo',
+      quote_v3: 'a capire a fondo il mondo',
       quote_v4: "ogni giorno ti serve l'altro.",
 
       // Bottoni Principali
-      btn_rsvp: 'R.S.V.P. — CONFERMA PRESENZA',
+      btn_rsvp: 'R.S.V.P.',
       btn_evento: "L'Evento",
       btn_luogo: 'Il Luogo',
       btn_logistica: 'Logistica',
@@ -136,14 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
       scroll_cta: 'Scroll to explore',
       lang_name: 'English',
 
-      // Love Quote (Poetic English Translation)
-      quote_v1: 'A lifetime side by side,',
-      quote_v2: 'two minds intertwined,',
-      quote_v3: 'To truly understand the world',
-      quote_v4: 'each day you need the other.',
+      // Love Quote (Mumford & Sons - Awake My Soul)
+      quote_v1: 'In these bodies we will live,',
+      quote_v2: 'in these bodies we will die,',
+      quote_v3: 'where you invest your love,',
+      quote_v4: 'you invest your life.',
 
       // Main Buttons
-      btn_rsvp: 'R.S.V.P. — CONFIRM ATTENDANCE',
+      btn_rsvp: 'R.S.V.P.',
       btn_evento: 'The Event',
       btn_luogo: 'The Venue',
       btn_logistica: 'Logistics',
@@ -752,17 +752,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Ferma la propagazione degli eventi touch dalla mappa per non innescare swipe-to-close
-    ['touchstart', 'touchmove', 'touchend'].forEach(evt => {
-      mapContainer.addEventListener(evt, e => e.stopPropagation(), { passive: true });
-    });
-    const mapWrapper = document.querySelector('.map-wrapper');
-    if (mapWrapper) {
-      ['touchstart', 'touchmove', 'touchend'].forEach(evt => {
-        mapWrapper.addEventListener(evt, e => e.stopPropagation(), { passive: true });
-      });
-    }
-
     // Configurazione icone predefinite Leaflet CDN per evitare 404
     if (L.Icon && L.Icon.Default) {
       delete L.Icon.Default.prototype._getIconUrl;
@@ -773,10 +762,13 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Inizializza la mappa centrata tra Bari, Valle d'Itria, Matera e Taranto con zoom 9
+    // Inizializza la mappa con supporto nativo completo a trascinamento e pinch-to-zoom (60fps)
     leafletMap = L.map('pugliaMap', {
       scrollWheelZoom: true,
-      zoomControl: true
+      zoomControl: true,
+      dragging: true,
+      touchZoom: true,
+      tap: false
     }).setView([40.82, 17.10], 9);
 
     // Rimuove la scritta "Leaflet" con la bandierina (non obbligatoria per licenza)
