@@ -999,28 +999,33 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sheetGallery) {
           imagesList.forEach((imgSrc, idx) => {
             const imgEl = document.createElement('img');
-            imgEl.src = imgSrc;
+            const versionSuffix = '?v=15.26';
+            const cleanUrl = imgSrc.includes('?') ? imgSrc : (imgSrc + versionSuffix);
+            imgEl.src = cleanUrl;
             imgEl.alt = `${place.title} - foto ${idx + 1}`;
             imgEl.loading = 'lazy';
             // Supporto universale sia per estensioni .jpg che .jpeg o .png
             imgEl.onerror = function () {
-              const currentSrc = this.getAttribute('src') || '';
+              const fullSrc = this.getAttribute('src') || '';
+              const parts = fullSrc.split('?');
+              const currentPath = parts[0];
+              const qStr = parts.length > 1 ? ('?' + parts[1]) : '';
               const step = parseInt(this.getAttribute('data-err-step') || '0', 10);
 
               if (step === 0) {
                 this.setAttribute('data-err-step', '1');
                 // Se era specificato .jpg prova con .jpeg e viceversa
-                if (currentSrc.endsWith('.jpg')) {
-                  this.src = currentSrc.slice(0, -4) + '.jpeg';
+                if (currentPath.endsWith('.jpg')) {
+                  this.src = currentPath.slice(0, -4) + '.jpeg' + qStr;
                   return;
-                } else if (currentSrc.endsWith('.jpeg')) {
-                  this.src = currentSrc.slice(0, -5) + '.jpg';
+                } else if (currentPath.endsWith('.jpeg')) {
+                  this.src = currentPath.slice(0, -5) + '.jpg' + qStr;
                   return;
                 }
               } else if (step === 1) {
                 this.setAttribute('data-err-step', '2');
-                const base = currentSrc.replace(/\.(jpeg|jpg)$/i, '');
-                this.src = base + '.png';
+                const base = currentPath.replace(/\.(jpeg|jpg)$/i, '');
+                this.src = base + '.png' + qStr;
                 return;
               }
               // Fallback finale
