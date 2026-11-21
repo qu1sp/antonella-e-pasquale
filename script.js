@@ -863,7 +863,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isHeart: true,
         desc: "Il cuore del nostro matrimonio! È un'antica dimora storica del XVI secolo situata nel cuore della campagna di Noci, circondata da ulivi e muretti a secco. Ci vediamo lì!",
         desc_en: "The heart of our wedding! An ancient 16th-century historic estate nestled in the heart of the Noci countryside, surrounded by olive groves and traditional dry-stone walls. See you there!",
-        images: ["sfondo-masseria.jpg", "sfondo-gatte.jpeg"]
+        images: ["sfondo-masseria.jpg"]
       },
       {
         lat: 40.6300,
