@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -37,8 +37,8 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Foglio di Stile v16 (Hero Pulita, Allineamento Ottico Nomi & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=16.0">
+  <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
+  <link rel="stylesheet" href="style.css?v=15.10">
 </head>
 <body>
 
@@ -487,14 +487,50 @@
           <div class="children-options-container" id="childrenOptionsField" style="display: none;">
             <span class="children-options-title" data-i18n="rsvp_children_opt_title">Opzioni per i bambini:</span>
             <div class="children-checkboxes-list">
-              <label class="luxury-checkbox-label">
-                <input type="checkbox" name="rsvpKidsMenu" value="SÃ¬" id="rsvpKidsMenu">
-                <span class="checkbox-text" data-i18n="rsvp_kids_menu">Menu bambini</span>
-              </label>
-              <label class="luxury-checkbox-label">
-                <input type="checkbox" name="rsvpKidsAnimation" value="SÃ¬" id="rsvpKidsAnimation">
-                <span class="checkbox-text" data-i18n="rsvp_kids_animation">Animazione per bambini</span>
-              </label>
+              <div class="children-option-item">
+                <label class="luxury-checkbox-label">
+                  <input type="checkbox" name="rsvpKidsMenu" value="Sì" id="rsvpKidsMenu">
+                  <span class="checkbox-text" data-i18n="rsvp_kids_menu">Menu bambini</span>
+                </label>
+                <div class="sub-qty-container" id="kidsMenuQtyField" style="display: none;">
+                  <label for="rsvpKidsMenuCount" class="sub-qty-label" data-i18n="rsvp_kids_menu_qty_label">Numero di menu bambini</label>
+                  <input type="number" id="rsvpKidsMenuCount" name="kids_menu_count" class="form-input form-input-qty" min="1" max="20" value="1" placeholder="1" disabled>
+                </div>
+              </div>
+
+              <div class="children-option-item">
+                <label class="luxury-checkbox-label">
+                  <input type="checkbox" name="rsvpKidsAnimation" value="Sì" id="rsvpKidsAnimation">
+                  <span class="checkbox-text" data-i18n="rsvp_kids_animation">Animazione per bambini</span>
+                </label>
+                <div class="sub-qty-container" id="kidsAnimationQtyField" style="display: none;">
+                  <label for="rsvpKidsAnimationCount" class="sub-qty-label" data-i18n="rsvp_kids_anim_qty_label">Numero di bambini per animazione</label>
+                  <input type="number" id="rsvpKidsAnimationCount" name="kids_animation_count" class="form-input form-input-qty" min="1" max="20" value="1" placeholder="1" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domanda Provenienza Ospiti: Arrivi dalla Puglia? -->
+        <div class="form-field" id="pugliaOriginField">
+          <span class="form-label" data-i18n="rsvp_puglia_label">Arrivi dalla Puglia? *</span>
+          <div class="radio-pill-group">
+            <label class="radio-pill">
+              <input type="radio" name="from_puglia" value="Sì" id="pugliaYes" checked>
+              <span class="radio-pill-btn" data-i18n="rsvp_puglia_yes">Sì</span>
+            </label>
+            <label class="radio-pill">
+              <input type="radio" name="from_puglia" value="No" id="pugliaNo">
+              <span class="radio-pill-btn" data-i18n="rsvp_puglia_no">No</span>
+            </label>
+          </div>
+
+          <!-- Messaggio caloroso per gli ospiti che viaggiano da fuori Puglia -->
+          <div class="puglia-travel-note" id="pugliaTravelNote" style="display: none;">
+            <div class="travel-note-header">
+              <span class="travel-note-icon">&#10024;</span>
+              <p class="travel-note-text" data-i18n="rsvp_puglia_note">Siamo infinitamente grati che tu abbia deciso di essere con noi in questo giorno, nonostante il lungo viaggio. Stiamo selezionando alcune strutture per permettervi di passare qui la notte, vi ricontatteremo al più presto con maggiori dettagli!</p>
             </div>
           </div>
         </div>
@@ -525,8 +561,8 @@
     </div>
   </template>
 
-  <!-- Script Funzionale Versione 16 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=16.0"></script>
+  <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
+  <script src="script.js?v=15.10"></script>
 </body>
 </html>
 

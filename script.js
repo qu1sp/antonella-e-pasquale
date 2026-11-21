@@ -108,6 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_children_opt_title: 'Opzioni per i bambini:',
       rsvp_kids_menu: 'Menu bambini',
       rsvp_kids_animation: 'Animazione per bambini',
+      rsvp_kids_menu_qty_label: 'Numero di menu bambini',
+      rsvp_kids_anim_qty_label: 'Numero di bambini per animazione',
+      rsvp_puglia_label: 'Arrivi dalla Puglia? *',
+      rsvp_puglia_yes: 'Sì',
+      rsvp_puglia_no: 'No',
+      rsvp_puglia_note: 'Siamo infinitamente grati che tu abbia deciso di essere con noi in questo giorno, nonostante il lungo viaggio. Stiamo selezionando alcune strutture per permettervi di passare qui la notte, vi ricontatteremo al più presto con maggiori dettagli!',
       rsvp_diet_label: 'Intolleranze, allergie o preferenze alimentari',
       rsvp_diet_ph: 'es: Nessuna intolleranza, celiachia, vegetariano...',
       rsvp_msg_label: 'Vuoi dirci qualcosa? (facoltativo)',
@@ -222,6 +228,12 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_children_opt_title: 'Options for children:',
       rsvp_kids_menu: 'Kids menu',
       rsvp_kids_animation: 'Kids entertainment',
+      rsvp_kids_menu_qty_label: "Number of kids' menus",
+      rsvp_kids_anim_qty_label: 'Number of kids for entertainment',
+      rsvp_puglia_label: 'Are you traveling from Puglia? *',
+      rsvp_puglia_yes: 'Yes',
+      rsvp_puglia_no: 'No',
+      rsvp_puglia_note: 'We are deeply grateful that you have chosen to celebrate with us, despite the long journey. We are currently selecting accommodation options for your stay and will be in touch with you very soon with all the details!',
       rsvp_diet_label: 'Dietary requirements or allergies',
       rsvp_diet_ph: 'e.g. None, gluten-free, vegetarian, vegan...',
       rsvp_msg_label: 'Would you like to tell us anything? (optional)',
@@ -580,8 +592,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const kidsMenuCheckbox = document.getElementById('rsvpKidsMenu');
     const kidsAnimationCheckbox = document.getElementById('rsvpKidsAnimation');
     const dietaryField = document.getElementById('dietaryField');
+    const kidsMenuQtyField = document.getElementById('kidsMenuQtyField');
+    const kidsMenuCountInput = document.getElementById('rsvpKidsMenuCount');
+    const kidsAnimationQtyField = document.getElementById('kidsAnimationQtyField');
+    const kidsAnimationCountInput = document.getElementById('rsvpKidsAnimationCount');
+    const pugliaOriginField = document.getElementById('pugliaOriginField');
+    const pugliaRadios = document.querySelectorAll('input[name="from_puglia"]');
+    const pugliaTravelNote = document.getElementById('pugliaTravelNote');
 
     if (!form) return;
+
+    // Gestione visualizzazione quantità per Menu Bambini
+    if (kidsMenuCheckbox) {
+      kidsMenuCheckbox.addEventListener('change', () => {
+        if (kidsMenuQtyField) {
+          kidsMenuQtyField.style.display = kidsMenuCheckbox.checked ? 'flex' : 'none';
+        }
+        if (kidsMenuCountInput) {
+          kidsMenuCountInput.disabled = !kidsMenuCheckbox.checked;
+          if (kidsMenuCheckbox.checked && (!kidsMenuCountInput.value || kidsMenuCountInput.value < 1)) {
+            kidsMenuCountInput.value = '1';
+          }
+        }
+      });
+    }
+
+    // Gestione visualizzazione quantità per Animazione Bambini
+    if (kidsAnimationCheckbox) {
+      kidsAnimationCheckbox.addEventListener('change', () => {
+        if (kidsAnimationQtyField) {
+          kidsAnimationQtyField.style.display = kidsAnimationCheckbox.checked ? 'flex' : 'none';
+        }
+        if (kidsAnimationCountInput) {
+          kidsAnimationCountInput.disabled = !kidsAnimationCheckbox.checked;
+          if (kidsAnimationCheckbox.checked && (!kidsAnimationCountInput.value || kidsAnimationCountInput.value < 1)) {
+            kidsAnimationCountInput.value = '1';
+          }
+        }
+      });
+    }
 
     // Gestione visualizzazione opzioni bambini (Sì / No)
     childrenRadios.forEach(radio => {
@@ -593,7 +642,20 @@ document.addEventListener('DOMContentLoaded', () => {
             childrenOptionsField.style.display = 'none';
             if (kidsMenuCheckbox) kidsMenuCheckbox.checked = false;
             if (kidsAnimationCheckbox) kidsAnimationCheckbox.checked = false;
+            if (kidsMenuQtyField) kidsMenuQtyField.style.display = 'none';
+            if (kidsAnimationQtyField) kidsAnimationQtyField.style.display = 'none';
+            if (kidsMenuCountInput) kidsMenuCountInput.disabled = true;
+            if (kidsAnimationCountInput) kidsAnimationCountInput.disabled = true;
           }
+        }
+      });
+    });
+
+    // Gestione domanda: Arrivi dalla Puglia? (Sì -> nulla, No -> messaggio caloroso)
+    pugliaRadios.forEach(radio => {
+      radio.addEventListener('change', () => {
+        if (pugliaTravelNote) {
+          pugliaTravelNote.style.display = (radio.value.toLowerCase() === 'no') ? 'block' : 'none';
         }
       });
     });
@@ -614,6 +676,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const checkedChild = document.querySelector('input[name="rsvpHasChildren"]:checked');
           if (childrenOptionsField) {
             childrenOptionsField.style.display = (isAttending && checkedChild && checkedChild.value === 'si') ? 'flex' : 'none';
+          }
+        }
+        if (pugliaOriginField) {
+          pugliaOriginField.style.display = isAttending ? 'flex' : 'none';
+          const checkedPuglia = document.querySelector('input[name="from_puglia"]:checked');
+          if (pugliaTravelNote) {
+            pugliaTravelNote.style.display = (isAttending && checkedPuglia && checkedPuglia.value.toLowerCase() === 'no') ? 'block' : 'none';
           }
         }
         if (dietaryField) {
