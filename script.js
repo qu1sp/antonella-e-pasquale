@@ -12,12 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const translations = {
     it: {
       // Hero & Countdown
-      cd_days: 'GIORNI',
-      cd_hours: 'ORE',
-      cd_minutes: 'MINUTI',
-      cd_minutes_short: 'MIN',
-      cd_seconds: 'SECONDI',
-      cd_seconds_short: 'SEC',
+      cd_days: 'giorni',
+      cd_hours: 'h',
+      cd_minutes: 'min',
+      cd_seconds: 'sec',
       cd_tagline: "all'inizio del nostro per sempre",
       scroll_cta: 'Scorri per scoprire',
       lang_name: 'Italiano',
@@ -121,12 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     en: {
       // Hero & Countdown
-      cd_days: 'DAYS',
-      cd_hours: 'HOURS',
-      cd_minutes: 'MINUTES',
-      cd_minutes_short: 'MIN',
-      cd_seconds: 'SECONDS',
-      cd_seconds_short: 'SEC',
+      cd_days: 'days',
+      cd_hours: 'h',
+      cd_minutes: 'min',
+      cd_seconds: 'sec',
       cd_tagline: 'until forever begins',
       scroll_cta: 'Scroll to explore',
       lang_name: 'English',
