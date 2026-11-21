@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Bottoni Principali
       btn_rsvp: 'R.S.V.P.',
+      btn_rsvp_date: 'entro il 14 Febbraio',
       btn_evento: "L'Evento",
       btn_luogo: 'Il Luogo',
       btn_logistica: 'Logistica',
@@ -135,6 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Main Buttons
       btn_rsvp: 'R.S.V.P.',
+      btn_rsvp_date: 'by February 14th',
       btn_evento: 'The Event',
       btn_luogo: 'The Venue',
       btn_logistica: 'Logistics',

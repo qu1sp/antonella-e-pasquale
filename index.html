@@ -38,7 +38,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=15.22">
+  <link rel="stylesheet" href="style.css?v=15.23">
 </head>
 <body>
 
@@ -218,10 +218,11 @@
           </button>
         </div>
 
-        <!-- Bottone R.S.V.P. Più Lungo Sotto i 4 Bottoni (Sfondo Bordeaux #601D2D, Testo Oat #EDD5AB) -->
+        <!-- Bottone R.S.V.P. Più Lungo Sotto i 4 Bottoni con data entro il 14 Febbraio -->
         <div class="rsvp-horizontal-wrapper">
           <button type="button" class="dash-btn btn-primary btn-rsvp-wide" data-modal-target="modal-rsvp" id="btnRsvp" aria-haspopup="dialog" aria-expanded="false">
-            <span class="btn-text" data-i18n="btn_rsvp">R.S.V.P.</span>
+            <span class="btn-rsvp-title" data-i18n="btn_rsvp">R.S.V.P.</span>
+            <span class="btn-rsvp-date" data-i18n="btn_rsvp_date">entro il 14 Febbraio</span>
           </button>
         </div>
 
@@ -507,7 +508,7 @@
   </template>
 
   <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=15.22"></script>
+  <script src="script.js?v=15.23"></script>
 </body>
 </html>
 
