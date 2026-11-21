@@ -8,3 +8,8 @@ $RECYCLE.BIN/
 # Temporary editor files
 *.tmp
 *~
+
+# Local print scripts and generated QR assets
+genera_qr.py
+qr_matrimonio_*.png
+__pycache__/
