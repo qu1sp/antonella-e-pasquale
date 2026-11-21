@@ -37,10 +37,13 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- Foglio di Stile v11 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=15.6">
+  <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
+  <link rel="stylesheet" href="style.css?v=15.8">
 </head>
 <body>
+
+  <!-- Sfondo panoramico fisso ad altissima definizione (l'intera opera visibile e stabile) -->
+  <div class="fixed-hero-bg" aria-hidden="true"></div>
 
   <!-- ====================================================================
        1. HERO SECTION (Prima schermata 100vh)
@@ -85,12 +88,10 @@
         <!-- Popover Menu Lingua (si apre verso l'alto a sinistra) -->
         <div class="lang-menu" id="langMenu" role="menu" aria-label="Seleziona lingua / Select language">
           <button type="button" class="lang-option is-active" data-lang="it" role="menuitem">
-            <span class="lang-flag" aria-hidden="true">ðŸ‡®ðŸ‡¹</span>
             <span class="lang-label">Italiano</span>
             <span class="lang-check" aria-hidden="true">&check;</span>
           </button>
           <button type="button" class="lang-option" data-lang="en" role="menuitem">
-            <span class="lang-flag" aria-hidden="true">ðŸ‡¬ðŸ‡§</span>
             <span class="lang-label">English</span>
             <span class="lang-check" aria-hidden="true">&check;</span>
           </button>
@@ -404,9 +405,9 @@
     </div>
   </template>
 
-  <!-- Template 4: Valle d'Itria / Itria Valley (Mappa Interattiva con Bottom Sheet Padlet/Google Maps) -->
-  <template id="tmpl-modal-valle-itria">
-    <div class="sheet-content">
+  <!-- Contenitore Mappa Valle d'Itria Pre-inizializzata (sempre pronta in memoria per apertura istantanea) -->
+  <div id="persistentValleItriaStaging" style="display: none;" aria-hidden="true">
+    <div id="persistentValleItriaContent" class="sheet-content">
       <header class="sheet-header">
         <p class="sheet-kicker" data-i18n="valle_kicker">Guida per gli Ospiti</p>
         <h2 class="sheet-title" data-i18n="valle_title">Valle d'Itria e dintorni</h2>
@@ -426,7 +427,8 @@
         </div>
       </div>
     </div>
-  </template>
+  </div>
+  <template id="tmpl-modal-valle-itria"></template>
 
   <!-- Template 5: R.S.V.P. / Confirm Attendance -->
   <template id="tmpl-modal-rsvp">
@@ -523,8 +525,8 @@
     </div>
   </template>
 
-  <!-- Script Funzionale Versione 11 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=15.4"></script>
+  <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
+  <script src="script.js?v=15.8"></script>
 </body>
 </html>
 

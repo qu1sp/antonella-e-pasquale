@@ -352,6 +352,45 @@ document.addEventListener('DOMContentLoaded', () => {
    * e iniettando le traduzioni correnti
    */
   function openModal(targetId, triggerBtn) {
+    if (targetId === 'modal-valle-itria') {
+      currentActiveTrigger = triggerBtn;
+      currentActiveTargetId = targetId;
+
+      modalBody.innerHTML = '';
+      const persistentContent = document.getElementById('persistentValleItriaContent');
+      if (persistentContent) {
+        const dict = translations[currentLang] || translations.it;
+        persistentContent.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) {
+            el.textContent = dict[key];
+          }
+        });
+        modalBody.appendChild(persistentContent);
+      }
+
+      modalBackdrop.classList.add('is-active');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+
+      if (triggerBtn) {
+        triggerBtn.setAttribute('aria-expanded', 'true');
+      }
+
+      if (leafletMap) {
+        leafletMap.invalidateSize();
+        setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 60);
+        setTimeout(() => { if (leafletMap) leafletMap.invalidateSize(); }, 250);
+      } else {
+        initMap();
+      }
+
+      setTimeout(() => {
+        modalSheet.focus();
+      }, 100);
+      return;
+    }
+
     const template = document.getElementById(`tmpl-${targetId}`);
     if (!template) return;
 
@@ -408,11 +447,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     currentActiveTargetId = null;
 
-    if (leafletMap) {
-      try {
-        leafletMap.remove();
-      } catch (e) {}
-      leafletMap = null;
+    // Riponi il contenuto della mappa nel container di staging senza distruggere Leaflet
+    const persistentContent = document.getElementById('persistentValleItriaContent');
+    const staging = document.getElementById('persistentValleItriaStaging');
+    if (persistentContent && staging && modalBody.contains(persistentContent)) {
+      staging.appendChild(persistentContent);
     }
   }
 
@@ -449,19 +488,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Supporto swipe down per mobile
+  // Supporto swipe down per mobile: attivo ESCLUSIVAMENTE sulla maniglia (.modal-grabber)
+  // per garantire che lo zoom o il pan sulla mappa e lo swipe nel carosello non chiudano mai la finestra
   let touchStartY = 0;
   let touchEndY = 0;
 
-  if (modalSheet) {
-    modalSheet.addEventListener('touchstart', (e) => {
-      touchStartY = e.changedTouches[0].screenY;
+  const modalGrabber = document.querySelector('.modal-grabber');
+  if (modalGrabber) {
+    modalGrabber.addEventListener('touchstart', (e) => {
+      touchStartY = e.touches[0].clientY;
     }, { passive: true });
 
-    modalSheet.addEventListener('touchend', (e) => {
-      touchEndY = e.changedTouches[0].screenY;
+    modalGrabber.addEventListener('touchend', (e) => {
+      touchEndY = e.changedTouches[0].clientY;
       const swipeDistance = touchEndY - touchStartY;
-      if (swipeDistance > 80 && modalBody.scrollTop <= 10) {
+      if (swipeDistance > 50) {
         closeModal();
       }
     }, { passive: true });
@@ -705,14 +746,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const mapContainer = document.getElementById('pugliaMap');
     if (!mapContainer || typeof L === 'undefined') return;
 
-    // Se esiste già una mappa precedente, la rimuoviamo per reinizializzare pulito
+    // Se esiste già una mappa precedente, ricalcola solo le dimensioni e termina
     if (leafletMap) {
-      try {
-        leafletMap.remove();
-      } catch (err) {
-        console.warn('Rimozione mappa:', err);
-      }
-      leafletMap = null;
+      leafletMap.invalidateSize();
+      return;
+    }
+
+    // Ferma la propagazione degli eventi touch dalla mappa per non innescare swipe-to-close
+    ['touchstart', 'touchmove', 'touchend'].forEach(evt => {
+      mapContainer.addEventListener(evt, e => e.stopPropagation(), { passive: true });
+    });
+    const mapWrapper = document.querySelector('.map-wrapper');
+    if (mapWrapper) {
+      ['touchstart', 'touchmove', 'touchend'].forEach(evt => {
+        mapWrapper.addEventListener(evt, e => e.stopPropagation(), { passive: true });
+      });
     }
 
     // Configurazione icone predefinite Leaflet CDN per evitare 404
@@ -754,6 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
     L.tileLayer(tileUrl, {
       maxZoom: 19,
       attribution: tileAttribution,
+      keepBuffer: 4,
       referrerPolicy: 'strict-origin-when-cross-origin'
     }).addTo(leafletMap);
 
@@ -1019,6 +1068,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
               };
             }
+            // Evita che lo scorrimento del carosello foto interferisca con la modale esterna
+            if (sheetGallery && !sheetGallery.__touchBound) {
+              sheetGallery.__touchBound = true;
+              ['touchstart', 'touchmove', 'touchend'].forEach(evt => {
+                sheetGallery.addEventListener(evt, e => e.stopPropagation(), { passive: true });
+              });
+            }
           } else {
             // Se c'è una sola foto, nascondi #sheetDots
             sheetDots.style.display = 'none';
@@ -1081,7 +1137,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateCountdown, 1000);
   }
 
-  // Avvio Countdown e Inizializzazione Lingua
+  // Pre-caricamento immediato Mappa Leaflet e Avvio Countdown & Lingua
+  initMap();
   initCountdown();
   applyLanguage(currentLang);
 });
