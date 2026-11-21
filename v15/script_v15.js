@@ -49,7 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
       evento_t4_desc: 'Banchetto tra i trulli con i sapori della nostra terra e vini selezionati.',
       evento_t5_title: 'Taglio Torta e Party',
       evento_t5_desc: 'Dolci della tradizione, open bar e DJ set fino a notte fonda.',
-      evento_btn_cal: 'Aggiungi al Calendario (iCal / Google)',
 
       // Modal: Il Luogo
       luogo_kicker: 'La Nostra Cornice',
@@ -121,11 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_success_title: 'Risposta Registrata!',
       rsvp_success_yes: 'Grazie {name}! La tua presenza renderà questo giorno davvero indimenticabile. La conferma è stata inviata a Pasquale e Antonella!',
       rsvp_success_no: 'Grazie {name}. Ci dispiace che tu non possa essere presente, sarai comunque nei nostri cuori!',
-      rsvp_btn_edit: 'Modifica la tua risposta',
-
-      // Calendar invite texts
-      ics_summary: 'Matrimonio Antonella & Pasquale',
-      ics_desc: 'Celebrazione delle nozze di Antonella & Pasquale - Domenica 22 Agosto 2027 a Masseria Bonelli (Noci, Puglia).'
+      rsvp_btn_edit: 'Modifica la tua risposta'
     },
 
     en: {
@@ -167,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
       evento_t4_desc: 'A feast among the trulli featuring authentic flavors of our land and selected wines.',
       evento_t5_title: 'Cake Cutting & Party',
       evento_t5_desc: 'Traditional sweets, open bar, and DJ set late into the night.',
-      evento_btn_cal: 'Add to Calendar (iCal / Google)',
 
       // Modal: The Venue
       luogo_kicker: 'Our Setting',
@@ -239,11 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
       rsvp_success_title: 'Response Saved!',
       rsvp_success_yes: 'Thank you {name}! Your presence will make our wedding truly unforgettable. Your confirmation has been delivered to Pasquale & Antonella!',
       rsvp_success_no: 'Thank you {name}. We are truly sorry you cannot be there, but you will be in our hearts!',
-      rsvp_btn_edit: 'Edit your response',
-
-      // Calendar invite texts
-      ics_summary: 'Antonella & Pasquale Wedding',
-      ics_desc: 'Wedding celebration of Antonella & Pasquale - Sunday, August 22, 2027 at Masseria Bonelli (Noci, Puglia, Italy).'
+      rsvp_btn_edit: 'Edit your response'
     }
   };
 
@@ -517,56 +507,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function bindModalSpecificEvents(modalId) {
-    // 1. EVENTO: Aggiungi al Calendario (.ics)
-    if (modalId === 'modal-evento') {
-      const btnCalendar = document.getElementById('btnAddToCalendar');
-      if (btnCalendar) {
-        btnCalendar.addEventListener('click', generateCalendarInvite);
-      }
-    }
-
-    // 2. RSVP: Gestione invio e persistenza
+    // 1. RSVP: Gestione invio e persistenza
     if (modalId === 'modal-rsvp') {
       setupRsvpForm();
     }
 
-    // 3. VALLE D'ITRIA: Inizializza Mappa Interattiva Leaflet (solo all'apertura del modale)
+    // 2. VALLE D'ITRIA: Inizializza Mappa Interattiva Leaflet (solo all'apertura del modale)
     if (modalId === 'modal-valle-itria') {
       initMap();
     }
-  }
-
-  /**
-   * Generatore file evento .ics bilingue per Apple/Google Calendar
-   */
-  function generateCalendarInvite() {
-    const dict = translations[currentLang] || translations.it;
-    const icsContent = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//Antonella & Pasquale Wedding//' + currentLang.toUpperCase(),
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'BEGIN:VEVENT',
-      'UID:wedding-antonella-pasquale-2027@masseriabonelli.it',
-      'DTSTAMP:20261108T120000Z',
-      'DTSTART:20270822T143000Z', // 16:30 CEST (UTC+2)
-      'DTEND:20270823T020000Z',
-      `SUMMARY:${dict.ics_summary}`,
-      `DESCRIPTION:${dict.ics_desc}`,
-      'LOCATION:Masseria Bonelli, Strada Provinciale 161, 70015 Noci BA, Italia',
-      'STATUS:CONFIRMED',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-
-    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = window.URL.createObjectURL(blob);
-    link.setAttribute('download', 'Matrimonio_Antonella_e_Pasquale.ics');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   }
 
   /**
