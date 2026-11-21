@@ -575,7 +575,7 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(50px, 8vh, 85px) clamp(16px, 4vw, 24px);
+  padding: clamp(24px, 4vh, 42px) clamp(16px, 4vw, 24px) clamp(36px, 6vh, 60px);
   box-sizing: border-box;
   position: relative;
   z-index: 6;
@@ -680,13 +680,13 @@ body::before {
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.16));
+  filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.16));
   box-sizing: border-box;
-  min-height: clamp(330px, 46vh, 405px);
+  min-height: clamp(340px, 48vh, 425px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(36px, 5.8vh, 48px) clamp(26px, 5.8vw, 42px);
+  padding: clamp(40px, 6.5vh, 55px) clamp(28px, 6vw, 44px);
 }
 
 .cartouche-content {
@@ -747,8 +747,8 @@ body::before {
 }
 
 /* --------------------------------------------------------------------------
-   8. NAVIGAZIONE E CONFERMA PRESENZA (FLUTTUANTE SUL PAESAGGIO)
-   Fuori da qualsiasi riquadro in vetro, i bottoni poggiano direttamente sullo sfondo
+   8. NAVIGAZIONE E CONFERMA PRESENZA (FLUTTUANTE SUL PAESAGGIO CON BLUR LEGGERO)
+   Senza cornice rigida, con un velo di blur trasparente e caldo
    -------------------------------------------------------------------------- */
 .floating-nav-section {
   width: 100%;
@@ -758,6 +758,15 @@ body::before {
   flex-direction: column;
   align-items: center;
   gap: clamp(12px, 2.2vw, 15px);
+  /* Sfondo glass blur delicato, molto trasparente e senza cornice */
+  background: rgba(237, 213, 171, 0.24);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: none;
+  border-radius: 22px;
+  padding: clamp(14px, 2.2vh, 18px) clamp(12px, 2.5vw, 16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
 }
 
 .rsvp-horizontal-wrapper {
@@ -797,24 +806,24 @@ body::before {
   outline-offset: 3px;
 }
 
-/* Bottone R.S.V.P. Solido Bordeaux */
+/* Bottone R.S.V.P. Solido Bordeaux con cornice Oat */
 .btn-primary.btn-rsvp-wide {
   background-color: var(--color-bordeaux);
   color: var(--bg-oat);
-  border: 1px solid var(--color-bordeaux-dark);
+  border: 1.5px solid var(--bg-btn-oat); /* Cornice Oat per staccare dal dipinto e far risaltare */
   border-radius: 16px;
   min-height: 56px;
   font-weight: 700;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12),
-              0 6px 20px rgba(96, 29, 45, 0.35),
-              inset 0 0 0 1px rgba(237, 213, 171, 0.25);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.14),
+              0 6px 20px rgba(96, 29, 45, 0.35);
 }
 
 .btn-primary.btn-rsvp-wide:hover {
   background-color: var(--color-bordeaux-hover);
   color: #FFF2D6;
+  border-color: #FFF2D6;
   box-shadow: 0 6px 24px rgba(96, 29, 45, 0.45);
   transform: translateY(-2px);
 }
@@ -825,13 +834,13 @@ body::before {
   box-shadow: 0 2px 8px rgba(96, 29, 45, 0.3);
 }
 
-/* I 4 Bottoni della Griglia in color Oat (#EDD5AB) */
+/* I 4 Bottoni della Griglia in color Oat (#EDD5AB) con cornice Bordeaux */
 .btn-oat-card {
   background: var(--bg-btn-oat);
-  border: 1px solid rgba(96, 29, 45, 0.22);
+  border: 1.5px solid var(--color-bordeaux); /* Cornice Bordeaux per far risaltare i bottoni chiari */
   border-radius: 16px;
   color: var(--color-bordeaux);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 .btn-oat-card:hover {
