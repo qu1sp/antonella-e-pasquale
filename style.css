@@ -590,23 +590,7 @@ body::before {
   gap: clamp(16px, 2.5vh, 22px);
 }
 
-/* CAPSULA CONTO ALLA ROVESCIA NELLA SECONDA SCHERMATA (ACTION SECTION) */
-.countdown-action-capsule {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(14px, 2.4vh, 18px) clamp(16px, 3.5vw, 24px);
-  background: rgba(237, 213, 171, 0.50);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-radius: 22px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.10),
-              inset 0 1px 2px rgba(255, 255, 255, 0.70);
-  box-sizing: border-box;
-}
+
 
 .wedding-countdown.countdown-horizontal-text {
   display: flex;
@@ -652,17 +636,14 @@ body::before {
 }
 
 @media (max-width: 380px) {
-  .luxury-quote-frame {
-    padding: 1.25rem 0.85rem;
+  .baroque-cartouche-card {
+    padding: clamp(28px, 5vh, 38px) clamp(18px, 4vw, 28px);
+    min-height: 310px;
   }
-  .corner-filigree {
-    width: 22px;
-    height: 22px;
+  .cartouche-quote {
+    font-size: 0.92rem;
+    line-height: 1.48;
   }
-  .corner-tl { top: 4px; left: 4px; }
-  .corner-tr { top: 4px; right: 4px; }
-  .corner-bl { bottom: 4px; left: 4px; }
-  .corner-br { bottom: 4px; right: 4px; }
 }
 
 .countdown-sep {
@@ -687,155 +668,78 @@ body::before {
 }
 
 /* --------------------------------------------------------------------------
-   6. ACTION SECTION (SECONDA SCHERMATA: DUE BLOCCHI GLASS SEPARATI)
-   - Blocco 1: I 4 bottoni e il bottone RSVP
-   - Blocco 2: La citazione d'amore tra linee Fine Art
-   Entrambi con base cromatica calda Oat: background: rgba(237, 213, 171, 0.45)
+   7. BAROQUE CARTOUCHE CARD (CORNICE BAROCCA UNIFICATA)
+   Racchiude Conto alla Rovescia e Citazione d'Amore nello stile Oat d'epoca
    -------------------------------------------------------------------------- */
-.action-section {
-  min-height: 100vh;
-  min-height: 100dvh;
+.baroque-cartouche-card {
   width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  position: relative;
+  background-image: url('cornice-barocca.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.16));
+  box-sizing: border-box;
+  min-height: clamp(330px, 46vh, 405px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(50px, 8vh, 85px) clamp(16px, 4vw, 24px);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 6;
+  padding: clamp(36px, 5.8vh, 48px) clamp(26px, 5.8vw, 42px);
 }
 
-.action-wrapper {
+.cartouche-content {
   width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(16px, 2.5vh, 24px); /* Stacco visivo netto tra i due blocchi */
-}
-
-/* Stile Base Condiviso per entrambi i Blocchi Glass (Vetro Caldo Oat) */
-.glass-panel {
-  width: 100%;
-  background: rgba(237, 213, 171, 0.45); /* Base Oat calda per eliminare il tono scuro del prato */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 26px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.13),
-              inset 0 1px 2px rgba(255, 255, 255, 0.6);
-  box-sizing: border-box;
-}
-
-/* --------------------------------------------------------------------------
-   7. PRIMO BLOCCO (IN ALTO): LA CITAZIONE D'AMORE CON CORNICE DI LUSSO & FREGI
-   - Passe-partout con doppia linea dorata/bordeaux
-   - 4 Angoli con filigrana ornamentale SVG
-   - Fregi botanici con foglie d'ulivo pugliesi e diamante centrale
-   -------------------------------------------------------------------------- */
-.glass-card-quote {
-  padding: 10px; /* Bordo esterno passe-partout per far respirare la cornice interna */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  overflow: visible;
-}
-
-.luxury-quote-frame {
-  width: 100%;
-  border: 1px solid rgba(96, 29, 45, 0.32); /* Filetto bordeaux fine-art */
-  border-radius: 20px;
-  padding: clamp(1.4rem, 3.2vh, 1.9rem) clamp(1.1rem, 3.2vw, 1.8rem);
-  box-sizing: border-box;
-  position: relative;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), /* Secondo filetto interno luminoso */
-              0 2px 10px rgba(96, 29, 45, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
-
-/* 4 Angoli Ornamentali SVG Fine-Art Filigree */
-.corner-filigree {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  pointer-events: none;
   z-index: 2;
-  opacity: 0.88;
-  transition: opacity 0.3s ease;
 }
 
-.corner-tl {
-  top: 6px;
-  left: 6px;
+.cartouche-countdown {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: clamp(4px, 0.8vh, 8px);
 }
 
-.corner-tr {
-  top: 6px;
-  right: 6px;
-  transform: scaleX(-1);
-}
-
-.corner-bl {
-  bottom: 6px;
-  left: 6px;
-  transform: scaleY(-1);
-}
-
-.corner-br {
-  bottom: 6px;
-  right: 6px;
-  transform: scale(-1, -1);
-}
-
-/* Fregi Botanici Superiore e Inferiore */
-.luxury-ornament {
+.cartouche-divider {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 250px;
-  margin: 0 auto;
+  margin: clamp(3px, 0.6vh, 7px) auto;
 }
 
-.ornament-top {
-  margin-bottom: 0.95rem;
-}
-
-.ornament-bottom {
-  margin-top: 0.95rem;
-}
-
-.botanical-svg {
+.cartouche-divider-svg {
   display: block;
-  max-width: 100%;
+  max-width: clamp(135px, 34vw, 170px);
   height: auto;
+  opacity: 0.85;
 }
 
-/* Citazione d'Amore in Libre Baskerville corsivo */
-.quote-block {
+.cartouche-quote {
   font-family: var(--font-quote);
   font-style: italic;
-  font-size: clamp(1.04rem, 3vw, 1.25rem);
+  font-size: clamp(0.96rem, 2.5vw, 1.15rem);
   font-weight: 400;
-  line-height: 1.62;
-  letter-spacing: 0.025em;
+  line-height: 1.54;
+  letter-spacing: 0.02em;
   color: var(--color-bordeaux);
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-  padding: 0 8px;
-  margin: 0 auto;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  padding: 0 6px;
+  margin: clamp(2px, 0.5vh, 6px) auto;
   text-align: center;
-  max-width: 440px;
-  position: relative;
-  z-index: 2;
+  max-width: 360px;
 }
 
 .quote-verse {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .quote-verse:last-child {
@@ -843,14 +747,17 @@ body::before {
 }
 
 /* --------------------------------------------------------------------------
-   8. SECONDO BLOCCO (IN BASSO): NAVIGAZIONE SECONDARIA E BOTTONE R.S.V.P.
+   8. NAVIGAZIONE E CONFERMA PRESENZA (FLUTTUANTE SUL PAESAGGIO)
+   Fuori da qualsiasi riquadro in vetro, i bottoni poggiano direttamente sullo sfondo
    -------------------------------------------------------------------------- */
-.glass-card-nav {
-  padding: clamp(1.4rem, 3.2vh, 1.8rem) clamp(1.2rem, 3.5vw, 1.6rem);
+.floating-nav-section {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(13px, 2.4vw, 16px);
+  gap: clamp(12px, 2.2vw, 15px);
 }
 
 .rsvp-horizontal-wrapper {

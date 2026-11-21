@@ -8,6 +8,8 @@ $RECYCLE.BIN/
 # Temporary editor files
 *.tmp
 *~
+*.bak.*
+crop_*.jpg
 
 # Local print scripts and generated QR assets
 genera_qr.py
