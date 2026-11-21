@@ -38,7 +38,7 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Foglio di Stile v15 (Hero Pulita, Conto alla Rovescia nella 2a Schermata & Bilingue) -->
-  <link rel="stylesheet" href="style.css?v=15.13">
+  <link rel="stylesheet" href="style.css?v=15.14">
 </head>
 <body>
 
@@ -360,39 +360,27 @@
       <header class="sheet-header">
         <p class="sheet-kicker" data-i18n="logistica_kicker">Come Raggiungerci</p>
         <h2 class="sheet-title" data-i18n="logistica_title">Logistica &amp; Viaggi</h2>
-        <p class="sheet-subtitle" data-i18n="logistica_subtitle">Tutte le informazioni per arrivare e soggiornare sereni</p>
+        <p class="sheet-subtitle" data-i18n="logistica_subtitle">Come raggiungere Masseria Bonelli</p>
       </header>
       <div class="logistics-accordion">
         <article class="logistics-card">
-          <h3 class="logistics-title" data-i18n="logistica_air_title">&#9992;&#65039; Aeroporti Consigliati</h3>
+          <h3 class="logistics-title" data-i18n="logistica_car_title">&#128663; In Auto (Consigliato)</h3>
+          <p class="logistics-text" data-i18n="logistica_car_desc">
+            Per raggiungere Masseria Bonelli e spostarsi in zona è indispensabile avere un'auto, poiché i trasporti pubblici sono molto limitati. Vi consigliamo di arrivare con mezzo proprio o di noleggiare un'auto all'arrivo (la Masseria dispone di ampio parcheggio interno). Se avete difficoltà con gli spostamenti, scriveteci pure!
+          </p>
+        </article>
+        <article class="logistics-card">
+          <h3 class="logistics-title" data-i18n="logistica_air_title">&#9992;&#65039; In Aereo</h3>
           <p class="logistics-text" data-i18n="logistica_air_desc">
-            Bari Karol Wojty&#322;a (BRI) dista circa 65 km (50 min in auto). Brindisi Papola Casale (BDS) dista circa 75 km (55 min in auto). Consigliamo il noleggio auto per muoversi liberamente in Valle d'Itria.
+            L'aeroporto più vicino è Bari Karol Wojty&#322;a (BRI), a circa 50 minuti di auto dalla Masseria (in alternativa, Brindisi (BDS) dista circa 55 minuti). In entrambi gli aeroporti sono presenti le principali compagnie di autonoleggio.
           </p>
         </article>
         <article class="logistics-card">
           <h3 class="logistics-title" data-i18n="logistica_train_title">&#128642; In Treno</h3>
           <p class="logistics-text" data-i18n="logistica_train_desc">
-            Stazione Centrale di Bari, poi treno regionale o transfer privato per Noci/Alberobello.
+            La stazione ferroviaria principale di riferimento è Bari Centrale, collegata con treni ad alta velocità da tutta Italia. Da lì consigliamo il noleggio di un'auto per proseguire comodamente verso la Masseria.
           </p>
         </article>
-        <article class="logistics-card">
-          <h3 class="logistics-title" data-i18n="logistica_shuttle_title">&#128663; Navetta &amp; Parcheggio</h3>
-          <p class="logistics-text" data-i18n="logistica_shuttle_desc">
-            Ampio parcheggio privato all'interno della Masseria. Su richiesta nella conferma RSVP organizzeremo navette dagli hotel convenzionati.
-          </p>
-        </article>
-        <article class="logistics-card">
-          <h3 class="logistics-title" data-i18n="logistica_stay_title">&#127976; Dove Alloggiare</h3>
-          <p class="logistics-text">
-            <span data-i18n="logistica_stay_desc">Abbiamo selezionato e concordato tariffe speciali con alcune strutture di charme tra Noci e Alberobello:</span><br>
-            <strong data-i18n="logistica_code_label">Convenzione "Matrimonio Antonella &amp; Pasquale"</strong>
-          </p>
-        </article>
-      </div>
-      <div class="sheet-actions">
-        <a href="#actionSection" class="action-btn action-btn-secondary" onclick="document.getElementById('modalCloseBtn').click(); setTimeout(() => document.getElementById('btnRsvp').click(), 250);">
-          <span class="btn-icon">&#128652;</span> <span data-i18n="logistica_btn_shuttle">Richiedi Assistenza Navetta</span>
-        </a>
       </div>
     </div>
   </template>
@@ -554,7 +542,7 @@
   </template>
 
   <!-- Script Funzionale Versione 15 (Bilingue IT/EN, Countdown nell'Action Section, Modali, RSVP) -->
-  <script src="script.js?v=15.13"></script>
+  <script src="script.js?v=15.14"></script>
 </body>
 </html>
 
