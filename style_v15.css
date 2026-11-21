@@ -194,6 +194,7 @@ body::before {
   line-height: 0.98;
   margin: 0;
   padding: 0 6px;
+  transform: translateX(-0.06em);
 }
 
 .name-line {
@@ -208,6 +209,11 @@ body::before {
                0 1px 3px rgba(96, 29, 45, 0.15);
 }
 
+/* Compensazione ottica: bilancia lo svolazzo finale a destra di "Mele" */
+.name-line.name-bride {
+  transform: translateX(-0.2em);
+}
+
 .name-ampersand {
   font-size: clamp(2.3rem, 7.8vw, 3.4rem);
   font-family: var(--font-script);
@@ -217,8 +223,13 @@ body::before {
   display: block;
   line-height: 0.88;
   margin: -0.05em 0;
+  transform: translateX(-0.1em);
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.85),
                0 2px 10px rgba(255, 255, 255, 0.7);
+}
+
+.name-line.name-groom {
+  transform: translateX(0);
 }
 
 /* --------------------------------------------------------------------------
@@ -510,18 +521,30 @@ body::before {
     margin-bottom: 0;
   }
 
+  /* Compensazione ottica millimetrica su smartphone:
+     allinea l'asse visivo dei nomi al centro perfetto dello schermo e del monogramma */
   .wedding-names.names-script {
     line-height: 0.98;
     padding: 0 4px;
+    transform: translateX(-5px);
   }
 
   .name-line {
     font-size: clamp(3.6rem, 13vw, 4.8rem);
   }
 
+  .name-line.name-bride {
+    transform: translateX(-15px);
+  }
+
   .name-ampersand {
     font-size: clamp(2.3rem, 8vw, 3.2rem);
     margin: -0.05em 0;
+    transform: translateX(-8px);
+  }
+
+  .name-line.name-groom {
+    transform: translateX(0);
   }
 
   /* Barra inferiore (lingua e 'Scorri per scoprire') stabilmente visibile */
