@@ -758,14 +758,14 @@ body::before {
   flex-direction: column;
   align-items: center;
   gap: clamp(12px, 2.2vw, 15px);
-  /* Sfondo glass blur delicato, molto trasparente e senza cornice */
-  background: rgba(237, 213, 171, 0.24);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* Sfondo glass blur leggerissimo come un velo (90% trasparente) */
+  background: rgba(237, 213, 171, 0.10);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border: none;
   border-radius: 22px;
   padding: clamp(14px, 2.2vh, 18px) clamp(12px, 2.5vw, 16px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   box-sizing: border-box;
 }
 
