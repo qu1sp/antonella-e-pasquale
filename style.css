@@ -573,9 +573,10 @@ body::before {
   min-height: 100dvh;
   width: 100%;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: clamp(14px, 2.5vh, 26px) clamp(14px, 3.5vw, 22px) clamp(30px, 5vh, 48px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(14px, 2.5vh, 26px) clamp(14px, 3.5vw, 22px) max(clamp(26px, 4.5vh, 42px), env(safe-area-inset-bottom, 24px));
   box-sizing: border-box;
   position: relative;
   z-index: 6;
@@ -587,7 +588,9 @@ body::before {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.8vh, 16px);
+  justify-content: space-between;
+  flex: 1;
+  gap: clamp(16px, 2.5vh, 28px);
 }
 
 
@@ -637,7 +640,7 @@ body::before {
 
 @media (max-width: 380px) {
   .baroque-cartouche-card {
-    padding: clamp(28px, 5vh, 38px) clamp(18px, 4vw, 28px);
+    padding: clamp(44px, 6.5vh, 56px) clamp(18px, 4vw, 28px) clamp(26px, 4vh, 36px);
     min-height: 310px;
   }
   .cartouche-quote {
@@ -755,7 +758,7 @@ body::before {
 .floating-nav-section {
   width: 100%;
   max-width: 440px;
-  margin: 0 auto;
+  margin: auto auto 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
