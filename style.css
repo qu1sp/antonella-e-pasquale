@@ -124,7 +124,6 @@ body::before {
 .hero-section {
   height: 100vh;
   height: 100svh;
-  height: 100dvh;
   min-height: 100svh;
   width: 100%;
   display: flex;
@@ -570,7 +569,7 @@ body::before {
    -------------------------------------------------------------------------- */
 .action-section {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -589,7 +588,9 @@ body::before {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 1;
+  flex: 1 0 auto;
+  min-height: calc(100vh - clamp(40px, 7vh, 68px));
+  min-height: calc(100svh - clamp(40px, 7vh, 68px));
   gap: clamp(16px, 2.5vh, 28px);
 }
 
@@ -796,7 +797,11 @@ body::before {
   outline: none;
   user-select: none;
   -webkit-user-select: none;
-  transition: all var(--duration-hover) var(--ease-out-fluid);
+  transition: transform var(--duration-hover) var(--ease-out-fluid),
+              box-shadow var(--duration-hover) var(--ease-out-fluid),
+              background-color var(--duration-hover) var(--ease-out-fluid),
+              border-color var(--duration-hover) var(--ease-out-fluid),
+              color var(--duration-hover) var(--ease-out-fluid);
   position: relative;
   overflow: hidden;
 }
